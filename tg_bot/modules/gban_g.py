@@ -176,7 +176,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
             pass
 
     if GBAN_LOGS:
-        log.edit_text(log_message + f"\n<b>Chats affected:</b> {gbanned_chats}", parse_mode=ParseMode.HTML)
+        log.edit_text(log_message + f"\n<b>Chats affected, parse_mode=ParseMode.HTML)
     else:
         send_to_list(bot, SUDO_USERS + SUPPORT_USERS, f"Gban complete! (User banned in {gbanned_chats} chats)")
 
@@ -185,14 +185,14 @@ def gban(bot: Bot, update: Update, args: List[str]):
 
     if gban_time > 60:
         gban_time = round((gban_time / 60), 2)
-        message.reply_text(f"Done! This gban affected {gbanned_chats} chats.\nTook me {gban_time} min")
+        message.reply_text(f"Done! Sucessful Took me {gban_time} min")
     else:
-        message.reply_text(f"Done! This gban affected {gbanned_chats} chats.\nTook me {gban_time} sec")
+        message.reply_text(f"Done! Sucessful Took me {gban_time} sec")
 
     try:
         bot.send_message(user_id,
                          "You have been globally banned from all groups where I have administrative permissions."
-                         "If you think that this was a mistake, you may appeal your gban here: @OnePunchSupport",
+                         "If you think that this was a mistake, you may appeal your gban here: @fateunion",
                          parse_mode=ParseMode.HTML)
     except:
         pass  # bot probably blocked by user
@@ -233,7 +233,6 @@ def ungban(bot: Bot, update: Update, args: List[str]):
         chat_origin = f"<b>{chat.id}</b>\n"
 
     log_message = (f"#UNGBANNED\n"
-                   f"<b>Originated from:</b> {chat_origin}\n"
                    f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
                    f"<b>Unbanned User:</b> {mention_html(user_chat.id, user_chat.first_name)}\n"
                    f"<b>Unbanned User ID:</b> {user_chat.id}\n"
@@ -281,7 +280,7 @@ def ungban(bot: Bot, update: Update, args: List[str]):
     sql.ungban_user(user_id)
 
     if GBAN_LOGS:
-        log.edit_text(log_message + f"\n<b>Chats affected:</b> {ungbanned_chats}", parse_mode=ParseMode.HTML)
+        log.edit_text(log_message +, parse_mode=ParseMode.HTML)
     else:
         send_to_list(bot, SUDO_USERS + SUPPORT_USERS, "un-gban complete!")
 
