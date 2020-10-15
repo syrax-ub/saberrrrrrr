@@ -28,7 +28,7 @@ GBAN_ERRORS = {
     "Chat_admin_required",
     "Only the creator of a basic group can kick group administrators",
     "Channel_private",
-    "Not in the chat"
+    "Not in the chats"
 }
 
 UNGBAN_ERRORS = {
