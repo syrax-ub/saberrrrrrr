@@ -123,7 +123,6 @@ def gban(bot: Bot, update: Update, args: List[str]):
         chat_origin = "<b>{}</b>\n".format(chat.id)
 
     log_message = (f"#GBANNED\n"
-                   f"<b>Originated from:</b> {chat_origin}\n"
                    f"<b>Admin:</b> {mention_html(user.id, user.first_name)}\n"
                    f"<b>Banned User:</b> {mention_html(user_chat.id, user_chat.first_name)}\n"
                    f"<b>Banned User ID:</b> {user_chat.id}\n"
@@ -131,7 +130,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
 
     if reason:
         if chat.type == chat.SUPERGROUP and chat.username:
-            log_message += f"\n<b>Reason:</b> <a href=\"http://telegram.me/{chat.username}/{message.message_id}\">{reason}</a>"
+            log_message += f"\n<b>Reason:</b> <a href=\"http://telegram.me/{chat.username}\n"
         else:
             log_message += f"\n<b>Reason:</b> {reason}"
 
@@ -193,7 +192,7 @@ def gban(bot: Bot, update: Update, args: List[str]):
     try:
         bot.send_message(user_id,
                          "You have been globally banned from all groups where I have administrative permissions."
-                         "If you think that this was a mistake, you may appeal your gban here: @OnePunchSupport",
+                         "If you think that this was a mistake, you may appeal your gban here: @fateunion",
                          parse_mode=ParseMode.HTML)
     except:
         pass  # bot probably blocked by user
@@ -324,7 +323,7 @@ def check_and_ban(update, user_id, should_message=True):
         if should_message:
             update.effective_message.reply_text("Alert: This user is globally banned.\n"
                                                 "*bans them from here*.\n"
-                                                "Appeal chat: @OnePunchSupport")
+                                                "Appeal chat: @fateunion")
 
 
 @run_async
@@ -383,7 +382,7 @@ def __user_info__(user_id):
         user = sql.get_gbanned_user(user_id)
         if user.reason:
             text += f"\n<b>Reason:</b> {html.escape(user.reason)}"
-        text += "\n<b>Appeal Chat:</b> @OnePunchSupport"
+        text += "\n<b>Appeal Chat:</b> @fateunion"
     else:
         text = text.format("No")
     return text
@@ -404,7 +403,7 @@ __help__ = """
 Gbans, also known as global bans, are used by the bot owners to ban spammers across all groups. This helps protect \
 you and your groups by removing spam flooders as quickly as possible. They can be disabled for you group by calling \
 /gbanstat
-Note: You can appeal gbans or ask gbans at @OnePunchSupport
+Note: You can appeal gbans or ask gbans at @fateunion
 """
 
 GBAN_HANDLER = CommandHandler("gban", gban, pass_args=True)
