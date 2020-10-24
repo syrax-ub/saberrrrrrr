@@ -9,7 +9,7 @@ from telegram.ext import (run_async,
 
 from tg_bot import dispatcher,
 from tg_bot.modules.disable import DisableAbleCommandHandler
-from Shoko.modules.helper_funcs.chat_status import (
+from tg_bot.modules.helper_funcs.chat_status import (
     bot_admin,
     user_admin
 )
