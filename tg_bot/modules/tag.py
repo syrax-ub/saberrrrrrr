@@ -19,7 +19,6 @@ from tg_bot.modules.helper_funcs.extraction import extract_user_and_text
 @run_async
 @bot_admin
 @user_admin
-@typing_action
 def addtag(update, context):
     chat = update.effective_chat  
     user = update.effective_user 
