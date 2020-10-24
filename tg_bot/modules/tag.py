@@ -67,7 +67,6 @@ def addtag(update, context):
 @run_async
 @bot_admin
 @user_admin
-@typing_action
 def removetag(update, context):
     chat = update.effective_chat  
     user = update.effective_user 
@@ -143,7 +142,6 @@ def tagg_all_button(update, context):
                                               )           
             
 @run_async
-@typing_action
 def untagme(update, context): 
     chat = update.effective_chat  
     user = update.effective_user 
@@ -164,7 +162,6 @@ def untagme(update, context):
     )
 
 @run_async
-@typing_action
 def tagme(update, context): 
     chat = update.effective_chat  
     user = update.effective_user 
@@ -187,7 +184,6 @@ def tagme(update, context):
 @run_async
 @bot_admin
 @user_admin
-@typing_action
 def tagall(update, context):
     chat = update.effective_chat 
     user = update.effective_user 
@@ -226,7 +222,6 @@ def tagall(update, context):
 @run_async
 @bot_admin
 @user_admin
-@typing_action
 def untagall(update, context):
     chat = update.effective_chat 
     user = update.effective_user 
