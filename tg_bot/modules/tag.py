@@ -7,7 +7,7 @@ from telegram.ext import (run_async,
                           Filters,
                           CallbackQueryHandler)
 
-from tg_bot import dispatcher,
+from tg_bot import dispatcher
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot.modules.helper_funcs.chat_status import (
     bot_admin,
