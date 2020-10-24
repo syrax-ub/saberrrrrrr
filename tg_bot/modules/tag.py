@@ -7,14 +7,14 @@ from telegram.ext import (run_async,
                           Filters,
                           CallbackQueryHandler)
 
-from tg_bot import dispatcher
+from tg_bot import dispatcher,
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot.modules.helper_funcs.chat_status import (
     bot_admin,
     user_admin
 )
 from tg_bot.modules.helper_funcs.extraction import extract_user_and_text
-from tg_bot.modules.helper_funcs.alternate import typing_action
+from tg_bot.modules.helper_funcs.alternate 
 
 
 @run_async
