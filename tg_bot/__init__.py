@@ -2,7 +2,8 @@ import logging
 import os
 import sys
 import time
-import telegram.ext as tg
+import telegram.ext as tg.
+from pyrogram import Client, errors
 
 StartTime = time.time()
 
@@ -153,6 +154,9 @@ DEV_USERS.add(123)
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
 dispatcher = updater.dispatcher
+kp = Client("saberPyro", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
+
+
 
 SUDO_USERS = list(SUDO_USERS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
