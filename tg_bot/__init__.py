@@ -3,6 +3,7 @@ import os
 import sys
 import time
 import telegram.ext as tg
+from telethon import TelegramClient
 
 StartTime = time.time()
 
@@ -140,6 +141,9 @@ else:
     WALL_API = Config.WALL_API
     STRICT_GMUTE = Config.STRICT_GMUTE
     
+telethn = TelegramClient("saber hi", API_ID, API_HASH)
+dispatcher = updater.dispatcher	dispatcher = updater.dispatcher
+
 
 SUDO_USERS.add(OWNER_ID)
 SUDO_USERS.add(123)
