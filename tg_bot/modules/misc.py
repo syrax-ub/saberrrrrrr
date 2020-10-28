@@ -441,8 +441,10 @@ __help__ = """
  - /getfw <model> <csc> - Samsung only - gets firmware download links from samfrew, sammobile and sfirmwares for the given device
 
  - /imdb <movie or TV series name>: View IMDb results for selected movie or TV series 
-"""
+ 
+ -/spbinfo : get info about a user from @Intellivoid's SpamProtection API
 
+"""
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True)
 GIFID_HANDLER = DisableAbleCommandHandler("gifid", gifid)
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
