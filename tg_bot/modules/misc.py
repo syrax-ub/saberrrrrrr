@@ -420,8 +420,7 @@ def twrp(bot, update, args):
 
 
 __help__ = """
- - /spbinfo : get info about a user from @Intellivoid's SpamProtection API
-
+ 
  - /id: get the current group id. If used by replying to a message, gets that user's id.
 
  - /gifid: reply to a gif to me to tell you its file ID.
