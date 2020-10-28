@@ -6,6 +6,7 @@ from typing import Optional, List
 from parsel import Selector
 from urllib.request import urlopen
 
+from pyrogram import idle, Client
 from telegram import Message, Chat, Update, Bot, User
 from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.error import Unauthorized, BadRequest, TimedOut, NetworkError, ChatMigrated, TelegramError
