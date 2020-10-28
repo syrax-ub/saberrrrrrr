@@ -63,8 +63,8 @@ if ENV:
     URL = os.environ.get('URL', "")  # Does not contain token
     PORT = int(os.environ.get('PORT', 5000))
     CERT_PATH = os.environ.get("CERT_PATH")
-    API_ID = os.environ.('API_ID')
-    API_HASH = os.environ.('API_HASH')
+    API_ID = os.environ.get('API_ID')
+    API_HASH = os.environ.get('API_HASH')
     DB_URI = os.environ.get('DATABASE_URL')
     DONATION_LINK = os.environ.get('DONATION_LINK')
     LOAD = os.environ.get("LOAD", "").split()
