@@ -81,8 +81,8 @@ if ENV:
     AI_API_KEY = os.environ.get('AI_API_KEY', None)
     WALL_API = os.environ.get('WALL_API', None)
     STRICT_GMUTE = bool(os.environ.get('STRICT_GMUTE', False)
-
-    INFOPIC = bool(os.environ.get('INFOPIC'))
+    INFOPIC = bool(os.environ.get('INFOPIC', False))
+    
 else:
     from tg_bot.config import Development as Config
     TOKEN = Config.API_KEY
@@ -128,7 +128,7 @@ else:
     CERT_PATH = Config.CERT_PATH
     API_ID = Config.API_ID
     API_HASH = Config.API_HASH
-    INFOPIC = Config.INFOPIC
+    
     DB_URI = Config.SQLALCHEMY_DATABASE_URI
     DONATION_LINK = Config.DONATION_LINK
     LOAD = Config.LOAD
@@ -144,7 +144,7 @@ else:
     AI_API_KEY = Config.AI_API_KEY
     WALL_API = Config.WALL_API
     STRICT_GMUTE = Config.STRICT_GMUTE
-    
+    INFOPIC = Config.INFOPIC
 
 SUDO_USERS.add(OWNER_ID)
 SUDO_USERS.add(123)
