@@ -144,7 +144,7 @@ else:
     AI_API_KEY = Config.AI_API_KEY
     WALL_API = Config.WALL_API
     STRICT_GMUTE = Config.STRICT_GMUTE
-    INFOPIC 
+    
 
 SUDO_USERS.add(OWNER_ID)
 SUDO_USERS.add(123)
