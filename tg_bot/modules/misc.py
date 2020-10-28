@@ -142,22 +142,22 @@ def info(bot: Bot, update: Update, args: List[str]):
     disaster_level_present = False
 
     if user.id == OWNER_ID:
-        text += "\n😎The Disaster level of this person is 'LEGEND'."
+        text += "\n😎The Disaster level of this person is 'master'."
         disaster_level_present = True
     elif user.id in DEV_USERS:
-        text += "\n🔥This member is one of 'Hero Association'."
+        text += "\n🔥This member is one of 'fate union'."
         disaster_level_present = True
     elif user.id in SUDO_USERS:
-        text += "\n🔥The Disaster level of this person is 'Dragon'."
+        text += "\n🔥The Disaster level of this person is 'omega'."
         disaster_level_present = True
     elif user.id in SUPPORT_USERS:
-        text += "\n🔥The Disaster level of this person is 'HACKER'."
+        text += "\n🔥The Disaster level of this person is 'Magma'."
         disaster_level_present = True
     elif user.id in TIGER_USERS:
-        text += "\n🔥The Disaster level of this person is 'Tiger'."
+        text += "\n🔥The Disaster level of this person is 'alpha'."
         disaster_level_present = True
     elif user.id in WHITELIST_USERS:
-        text += "\n🔥The Disaster level of this person is 'Wolf'."
+        text += "\n🔥The Disaster level of this person is 'human'."
         disaster_level_present = True
 
     if disaster_level_present:
