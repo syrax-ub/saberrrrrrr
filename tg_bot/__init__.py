@@ -65,7 +65,7 @@ if ENV:
     CERT_PATH = os.environ.get("CERT_PATH")
     API_ID = os.environ.get("API_ID", None)
     API_HASH = os.environ.get("API_HASH", None)
-    INFOPIC = bool(os.environ.get('INFOPIC', False)
+    
     DB_URI = os.environ.get('DATABASE_URL')
     DONATION_LINK = os.environ.get('DONATION_LINK')
     LOAD = os.environ.get("LOAD", "").split()
@@ -80,8 +80,8 @@ if ENV:
     API_WEATHER  = os.environ.get('API_OPENWEATHER',False)
     AI_API_KEY = os.environ.get('AI_API_KEY', None)
     WALL_API = os.environ.get('WALL_API', None)
-    STRICT_GMUTE = bool(os.environ.get('STRICT_GMUTE', False))
-    
+    STRICT_GMUTE = bool(os.environ.get('STRICT_GMUTE', False)
+    INFOPIC = bool(os.environ.get('INFOPIC', False))
     
 else:
     from tg_bot.config import Development as Config
