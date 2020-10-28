@@ -2,7 +2,7 @@ import logging
 import os
 import sys
 import time
-import telegram.ext as tg.
+import telegram.ext as tg
 from pyrogram import Client, errors
 
 StartTime = time.time()
