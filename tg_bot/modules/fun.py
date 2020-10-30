@@ -129,6 +129,8 @@ __help__ = """
  - /bluetext : check urself :V
  - /weebify <text>: returns a weebified text
  - /roll : Roll a dice.
+ - /react: Reacts with a random reaction
+ - /zal : reply to text
  - /police : 🚔
  - /rlg : Join ears,nose,mouth and create an emo ;-;
 """
