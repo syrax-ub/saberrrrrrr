@@ -548,14 +548,6 @@ def devlist(bot: Bot, update: Update):
             pass
     update.effective_message.reply_text(reply, parse_mode=ParseMode.HTML)
 
-
-__help__ = """
- - /heroes - Lists all Hero Association members.
- - /dragons - Lists all Dragon disasters.
- - /tigers - Lists all Tigers disasters.
- - /wolves - Lists all Wolf disasters.
-"""
-
 SUDO_HANDLER = CommandHandler(("addsudo", "adddragon"), addsudo, pass_args=True)
 SUPPORT_HANDLER = CommandHandler(("addsupport", "adddemon"), addsupport, pass_args=True)
 TIGER_HANDLER = CommandHandler(("addtiger"), addtiger, pass_args=True)
