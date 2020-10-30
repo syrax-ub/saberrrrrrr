@@ -30,9 +30,6 @@ def paste(bot: Bot, update: Update, args: List[str]):
 
     message.reply_text(reply_text, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
-__help__ = """
- - /paste - Do a paste at `neko.bin`
-"""
 
 PASTE_HANDLER = DisableAbleCommandHandler("paste", paste, pass_args=True)
 dispatcher.add_handler(PASTE_HANDLER)
