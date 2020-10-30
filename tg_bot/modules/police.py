@@ -33,10 +33,6 @@ def police(bot: Bot, update: Update):
     msg.edit_text('Police is here!')
 
 
-__help__ = """
-- /police : 🚔
-"""
-
 POLICE_HANDLER = DisableAbleCommandHandler("police", police)
 
 
