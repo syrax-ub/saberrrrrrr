@@ -35,12 +35,6 @@ def github(bot: Bot, update: Update):
     message.reply_text(reply_text, parse_mode=ParseMode.MARKDOWN)
 
 
-__help__ = """
- - /git:{GitHub username} Returns info about a GitHub user or organization.
-"""
-
-__mod_name__ = "GITHUB"
-
 github_handle = DisableAbleCommandHandler("git", github)
 
 dispatcher.add_handler(github_handle)
