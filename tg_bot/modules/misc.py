@@ -157,7 +157,7 @@ def info(bot: Bot, update: Update, args: List[str]):
         text += "\n The Disaster level of this person is 'SHADOW'."
         disaster_level_present = True
     elif user.id in WHITELIST_USERS:
-        text += "\n The Disaster level of this person is 'cilivian'."
+        text += "\n The Disaster level of this person is 'Human'."
         disaster_level_present = True
 
     if disaster_level_present:
