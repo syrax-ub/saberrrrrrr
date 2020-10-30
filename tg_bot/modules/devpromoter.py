@@ -367,16 +367,6 @@ def devlist(bot: Bot, update: Update):
     update.effective_message.reply_text(reply, parse_mode=ParseMode.HTML)
 
 
-__help__ = """
- - /addsudo - add sudo users
- - /addsupport - add support users
- - /addwhitelist - add whitelist users
- - /whitelistlist - List whitelisted users.
- - /supportlist - List support users.
- - /sudolist - List sudo users.
- - /devlist - List dev users.
-"""
-
 SUDO_HANDLER = CommandHandler(("addsudo"), addsudo, pass_args=True)
 SUPPORT_HANDLER = CommandHandler(("addsupport"), addsupport, pass_args=True)
 WHITELIST_HANDLER = CommandHandler(("addwhitelist"), addwhitelist, pass_args=True)
@@ -401,7 +391,6 @@ dispatcher.add_handler(SUPPORTLIST_HANDLER)
 dispatcher.add_handler(SUDOLIST_HANDLER)
 dispatcher.add_handler(DEVLIST_HANDLER)
 
-__mod_name__ = "DEV PROMOTER"
 __handlers__ = [SUDO_HANDLER, SUPPORT_HANDLER, WHITELIST_HANDLER,
                 UNSUDO_HANDLER, UNSUPPORT_HANDLER, UNWHITELIST_HANDLER,
                 WHITELISTLIST_HANDLER, SUPPORTLIST_HANDLER, SUDOLIST_HANDLER, DEVLIST_HANDLER]
