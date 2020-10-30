@@ -340,6 +340,7 @@ STEAL_HANDLER = DisableAbleCommandHandler(
 )
 __help__ = """
 - /stickerid: reply to a sticker to get its ID.
+- /gifid: reply to a gif to me to tell you its file ID.
 - /getsticker: reply to a sticker to get the raw PNG image.
 - /steal: reply to a sticker or image to add it to your pack.
 - /stickers: try sticker pack u wanna search (/stickers saber )
