@@ -87,6 +87,12 @@ def shrug(bot: Bot, update: Update):
     reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
     reply_text(r"¯\_(ツ)_/¯")
 
+@run_async
+def cutie(bot: Bot, update: Update):
+    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text("@CurseIsLove is cutie")
+    
+
 
 @run_async
 def bluetext(bot: Bot, update: Update):
@@ -136,6 +142,7 @@ __help__ = """
  - /police : 🚔
  - /rlg : Join ears,nose,mouth and create an emo ;-;
 """
+CUTIE_HANDLER = DisableAbleCommandHandler("cutie", cutie)
 ABUSE_HANDLER = DisableAbleCommandHandler(["abuse", "abuse"], abuse, admin_ok=True)
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
 SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
@@ -147,6 +154,7 @@ RLG_HANDLER = DisableAbleCommandHandler("rlg", rlg)
 DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 
+dispatcher.add_handler(CUTIE_HANDLER)
 dispatcher.add_handler(ABUSE_HANDLER)
 dispatcher.add_handler(RUNS_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
