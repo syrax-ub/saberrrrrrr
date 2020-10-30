@@ -127,6 +127,7 @@ __help__ = """
  - /decide : Randomly answers yes/no/maybe
  - /toss : Tosses A coin
  - /bluetext : check urself :V
+ - /weebify <text>: returns a weebified text
  - /roll : Roll a dice.
  - /police : 🚔
  - /rlg : Join ears,nose,mouth and create an emo ;-;
