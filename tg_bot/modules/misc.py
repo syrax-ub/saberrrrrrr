@@ -427,6 +427,7 @@ __help__ = """
 - /checkfw <model> <csc> - Samsung only - shows the latest firmware info for the given device, taken from samsung servers
 - /weather <city>: get weather info in a particular place
 - /cash : currency converter
+- /git:{GitHub username} Returns info about a GitHub user or organization
  example syntax: /cash 1 USD INR
 - /imdb <movie or TV series name>: View IMDb results for selected movie or TV series 
 """
