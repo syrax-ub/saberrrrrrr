@@ -431,9 +431,9 @@ __help__ = """
  - /safemode <on/off/yes/no>: Disallows new users to send media for 24 hours after joining a group.
     Use unmute to unrestrict them.
 
-  - /ud <word>: Type the word or expression you want to search use.
+ - /ud <word>: Type the word or expression you want to search use.
 
- - /twrp <codename> -  gets latest twrp for the android device using the codename
+  - /ping - get ping time of bot to telegram server
 
  - /checkfw <model> <csc> - Samsung only - shows the latest firmware info for the given device, taken from samsung servers
 
