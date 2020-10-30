@@ -100,15 +100,15 @@ def new_member(bot: Bot, update: Update, job_queue: JobQueue):
 
             # Welcome Devs
             elif new_mem.id in DEV_USERS:
-                update.effective_message.reply_text("Whoa! A member of the Heroes Association just joined!")
+                update.effective_message.reply_text("Whoa! A member of the fate union just joined!")
 
             # Welcome Sudos
             elif new_mem.id in SUDO_USERS:
-                update.effective_message.reply_text("Huh! A Dragon disaster just joined! Stay Alert!")
+                update.effective_message.reply_text("Huh! A alpha disaster just joined! Stay Alert!")
 
             # Welcome Support
             elif new_mem.id in SUPPORT_USERS:
-                update.effective_message.reply_text("Huh! Someone with a Demon disaster level just joined!")
+                update.effective_message.reply_text("Huh! Someone with a omega disaster level just joined!")
 
             # Welcome Whitelisted
             elif new_mem.id in TIGER_USERS:
@@ -116,11 +116,11 @@ def new_member(bot: Bot, update: Update, job_queue: JobQueue):
 
             # Welcome Tigers
             elif new_mem.id in WHITELIST_USERS:
-                update.effective_message.reply_text("Oof! A Wolf disaster just joined!")
+                update.effective_message.reply_text("Oof! A human disaster just joined!")
 
             # Welcome yourself
             elif new_mem.id == bot.id:
-                update.effective_message.reply_text("hello 😎")
+                update.effective_message.reply_text("Thank you for adding me in your group")
 
             else:
                 # If welcome message is media, send with appropriate function
