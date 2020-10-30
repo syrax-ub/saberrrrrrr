@@ -419,23 +419,16 @@ def twrp(bot, update, args):
 
 __help__ = """
 
-  - /paste - Do a paste at `neko.bin`
-
- - /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
-
- - /safemode <on/off/yes/no>: Disallows new users to send media for 24 hours after joining a group.
+- /paste - Do a paste at `neko.bin`
+- /t: while replying to a message, will reply with a grammar corrected version
+- /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats. - /safemode <on/off/yes/no>: Disallows new users to send media for 24 hours after joining a group.
     Use unmute to unrestrict them.
-
- - /ud <word>: Type the word or expression you want to search use.
-
- - /checkfw <model> <csc> - Samsung only - shows the latest firmware info for the given device, taken from samsung servers
-
- - /weather <city>: get weather info in a particular place
-
-  - /cash : currency converter
+- /ud <word>: Type the word or expression you want to search use.
+- /checkfw <model> <csc> - Samsung only - shows the latest firmware info for the given device, taken from samsung servers
+- /weather <city>: get weather info in a particular place
+- /cash : currency converter
  example syntax: /cash 1 USD INR
-
- - /imdb <movie or TV series name>: View IMDb results for selected movie or TV series 
+- /imdb <movie or TV series name>: View IMDb results for selected movie or TV series 
 """
 
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True)
