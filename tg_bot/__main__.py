@@ -155,10 +155,10 @@ def start(bot: Bot, update: Update, args: List[str]):
                     ],
                     [
                         InlineKeyboardButton(
-                            text="Support Chat // Fate union",
+                            text="Support Chat ",
                             url=f"https://t.me/fateUnion"),
                         InlineKeyboardButton(
-                            text="Kigyo Updates Channel",
+                            text="Updates ",
                             url="https://t.me/fateunionupdates")
                     ],
                     [
