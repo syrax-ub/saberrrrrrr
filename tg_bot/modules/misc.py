@@ -432,6 +432,9 @@ __help__ = """
 
  - /weather <city>: get weather info in a particular place
 
+  - /cash : currency converter
+ example syntax: /cash 1 USD INR
+
  - /imdb <movie or TV series name>: View IMDb results for selected movie or TV series 
 """
 
