@@ -146,8 +146,27 @@ def start(bot: Bot, update: Update, args: List[str]):
             update.effective_message.reply_photo(
                 BOT_IMG,
                 PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),
-                parse_mode=ParseMode.MARKDOWN, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="CLICK HERE TO SUMMON ME ",
-                                                                       url="t.me/{}?startgroup=true".format(bot.username))]]))
+                parse_mode=ParseMode.MARKDOWN,
+                reply_markup=InlineKeyboardMarkup(
+                    [[
+                        InlineKeyboardButton(
+                            text="Add saber to your group",
+                            url="t.me/{}?startgroup=true".format(bot.username))
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Support Chat // Fate union",
+                            url=f"https://t.me/fateUnion"),
+                        InlineKeyboardButton(
+                            text="Kigyo Updates Channel",
+                            url="https://t.me/fateunionupdates")
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="help",
+                            callback_data="help_back")
+                    ]]))
+                                                                 
 
 
     else:
