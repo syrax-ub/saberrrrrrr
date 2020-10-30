@@ -131,6 +131,7 @@ __help__ = """
  - /roll : Roll a dice.
  - /react: Reacts with a random reaction
  - /zal : reply to text
+ - /shout <keyword>: write anything you want to give loud shout.
  - /police : 🚔
  - /rlg : Join ears,nose,mouth and create an emo ;-;
 """
