@@ -433,11 +433,11 @@ __help__ = """
 
  - /ud <word>: Type the word or expression you want to search use.
 
-  - /ping - get ping time of bot to telegram server
+ - /ping - get ping time of bot to telegram server
 
  - /checkfw <model> <csc> - Samsung only - shows the latest firmware info for the given device, taken from samsung servers
 
- - /getfw <model> <csc> - Samsung only - gets firmware download links from samfrew, sammobile and sfirmwares for the given device
+ - /weather <city>: get weather info in a particular place
 
  - /imdb <movie or TV series name>: View IMDb results for selected movie or TV series 
 """
