@@ -128,15 +128,15 @@ def __user_info__(user_id):
 __help__ = """
  
 *ID:*
- -/id`*:* get the current group id. If used by replying to a message, gets that user's id.
+ - /id`*:* get the current group id. If used by replying to a message, gets that user's id.
 *Self addded information:* 
- -/setme <text>`*:* will set your info
- -/me`*:* will get your or another user's info.
+ - /setme <text>`*:* will set your info
+ - /me`*:* will get your or another user's info.
 *Information others add on you:* 
- -/bio`*:* will get your or another user's bio. This cannot be set by yourself.
- -/setbio <text>`*:* while replying, will save another user's bio 
+ - /bio`*:* will get your or another user's bio. This cannot be set by yourself.
+ - /setbio <text>`*:* while replying, will save another user's bio 
 *Overall Information about you:*
- -/info`*:* get information about a user.
+ - /info`*:* get information about a user.
 """
 
 SET_BIO_HANDLER = DisableAbleCommandHandler("setbio", set_about_bio)
