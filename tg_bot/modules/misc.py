@@ -417,14 +417,9 @@ def twrp(bot, update, args):
         update.message.reply_text("{}".format(reply),
                                parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
-
-
 __help__ = """
- - /id: get the current group id. If used by replying to a message, gets that user's id.
-  
- - /paste - Do a paste at `neko.bin`
 
- - /info: get information about a user.
+  - /paste - Do a paste at `neko.bin`
 
  - /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
 
