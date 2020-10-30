@@ -418,7 +418,7 @@ def twrp(bot, update, args):
                                parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
 __help__ = """
-
+- /wiki text: Returns search from wikipedia for the input text
 - /paste - Do a paste at `neko.bin`
 - /t: while replying to a message, will reply with a grammar corrected version
 - /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats. - /safemode <on/off/yes/no>: Disallows new users to send media for 24 hours after joining a group.
