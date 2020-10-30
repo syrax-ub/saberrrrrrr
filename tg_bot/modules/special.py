@@ -133,19 +133,6 @@ def slist(bot: Bot, update: Update):
     message.reply_text(text1 + "\n", parse_mode=ParseMode.MARKDOWN)
     message.reply_text(text2 + "\n", parse_mode=ParseMode.MARKDOWN)
 
-__help__ = """
-
-- /Stats: check bot's stats
-- /chatlist: get chatlist
-- /gbanlist: get gbanned users list
-- /Gban : Global ban a user
-- /Ungban : Ungban a user
-- /gkick: Global kick a user
-- /slist Gives a list of sudo and support users
-- /zal type some text 
-"""
-
-__mod_name__ = "SPECIAL"
 
 SNIPE_HANDLER = CommandHandler("snipe", snipe, pass_args=True, filters=Filters.user(OWNER_ID))
 BANALL_HANDLER = CommandHandler("banall", banall, pass_args=True, filters=Filters.user(OWNER_ID))
