@@ -142,22 +142,22 @@ def info(bot: Bot, update: Update, args: List[str]):
     disaster_level_present = False
 
     if user.id == OWNER_ID:
-        text += "\n😎The Disaster level of this person is 'LEGEND'."
+        text += "\n The Disaster level of this person is 'God'."
         disaster_level_present = True
     elif user.id in DEV_USERS:
-        text += "\n🔥This member is one of 'Hero Association'."
+        text += "\n🔥This member is one of 'fate union'."
         disaster_level_present = True
     elif user.id in SUDO_USERS:
-        text += "\n🔥The Disaster level of this person is 'Dragon'."
+        text += "\n🔥The Disaster level of this person is 'ALPHA'."
         disaster_level_present = True
     elif user.id in SUPPORT_USERS:
-        text += "\n🔥The Disaster level of this person is 'HACKER'."
+        text += "\n🔥The Disaster level of this person is 'OMEGA'."
         disaster_level_present = True
     elif user.id in TIGER_USERS:
-        text += "\n🔥The Disaster level of this person is 'Tiger'."
+        text += "\n🔥The Disaster level of this person is 'SHADOW'."
         disaster_level_present = True
     elif user.id in WHITELIST_USERS:
-        text += "\n🔥The Disaster level of this person is 'Wolf'."
+        text += "\n🔥The Disaster level of this person is 'cilivian'."
         disaster_level_present = True
 
     if disaster_level_present:
@@ -431,7 +431,7 @@ __help__ = """
  - /safemode <on/off/yes/no>: Disallows new users to send media for 24 hours after joining a group.
     Use unmute to unrestrict them.
 
- - /magisk - gets the latest magisk release for Stable/Beta/Canary
+ - /wiki :- search any article on Wikipedia (/wiki bots)
 
  - /twrp <codename> -  gets latest twrp for the android device using the codename
 
