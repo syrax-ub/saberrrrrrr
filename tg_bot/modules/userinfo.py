@@ -135,10 +135,6 @@ __help__ = """
 *Information others add on you:* 
  -/bio`*:* will get your or another user's bio. This cannot be set by yourself.
  -/setbio <text>`*:* while replying, will save another user's bio 
-Examples:
- -/bio @username(defaults to yours if not specified).`
- -/setbio This user is a wolf` (reply to the user)
-
 *Overall Information about you:*
  -/info`*:* get information about a user.
 """
