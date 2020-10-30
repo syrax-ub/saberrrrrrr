@@ -128,6 +128,7 @@ __help__ = """
  - /toss : Tosses A coin
  - /bluetext : check urself :V
  - /roll : Roll a dice.
+ - /police : 🚔
  - /rlg : Join ears,nose,mouth and create an emo ;-;
 """
 
