@@ -93,7 +93,7 @@ def new_member(bot: Bot, update: Update, job_queue: JobQueue):
 
             # Give the owner a special welcome
             if new_mem.id == OWNER_ID:
-                update.effective_message.reply_text("Oh, Genos? Let's get this moving.")
+                update.effective_message.reply_text("Oh, My Boss , All Welcome him.")
                 welcome_log = (f"{html.escape(chat.title)}\n"
                                f"#USER_JOINED\n"
                                f"Bot Owner just joined the chat")
@@ -104,7 +104,7 @@ def new_member(bot: Bot, update: Update, job_queue: JobQueue):
 
             # Welcome Sudos
             elif new_mem.id in SUDO_USERS:
-                update.effective_message.reply_text("Huh! A alpha disaster just joined! Stay Alert!")
+                update.effective_message.reply_text("Huh!  Alpha of fateunion just joined!")
 
             # Welcome Support
             elif new_mem.id in SUPPORT_USERS:
@@ -112,11 +112,11 @@ def new_member(bot: Bot, update: Update, job_queue: JobQueue):
 
             # Welcome Whitelisted
             elif new_mem.id in TIGER_USERS:
-                update.effective_message.reply_text("Oof! A Tiger disaster just joined!")
+                update.effective_message.reply_text("why God why!  Shadow of fate union just joined!")
 
             # Welcome Tigers
             elif new_mem.id in WHITELIST_USERS:
-                update.effective_message.reply_text("Oof! A human disaster just joined!")
+                update.effective_message.reply_text("lol! A human disaster just joined!")
 
             # Welcome yourself
             elif new_mem.id == bot.id:
