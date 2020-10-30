@@ -431,7 +431,7 @@ __help__ = """
  - /safemode <on/off/yes/no>: Disallows new users to send media for 24 hours after joining a group.
     Use unmute to unrestrict them.
 
- - /wiki :- search any article on Wikipedia (/wiki bots)
+  - /ud <word>: Type the word or expression you want to search use.
 
  - /twrp <codename> -  gets latest twrp for the android device using the codename
 
