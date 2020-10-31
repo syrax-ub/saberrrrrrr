@@ -163,11 +163,16 @@ def info(bot: Bot, update: Update, args: List[str]):
     if disaster_level_present:
         text += ' [<a href="https://t.me/fateunionupdates/33">?</a>]'.format( bot.username)
 
+    text +="\n"
+    text += "\nCAS banned: "
+    result = cas.banchecker(user.id)
+    text += str(result)
     text += "\n"
+
     for mod in USER_INFO:
         if mod.__mod_name__ == "Users":
             continue
-
+    
         try:
             mod_info = mod.__user_info__(user.id)
         except TypeError:
