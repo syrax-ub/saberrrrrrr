@@ -18,8 +18,7 @@ REPORT_IMMUNE_USERS = SUDO_USERS + TIGER_USERS
 
 @run_async
 @user_admin
-def report_setting(update: Update, context: CallbackContext):
-    bot, args = context.bot, context.args
+def report_setting(bot: Bot, update: Update, args: List[str]:
     chat = update.effective_chat
     msg = update.effective_message
 
@@ -62,9 +61,7 @@ def report_setting(update: Update, context: CallbackContext):
 @run_async
 @user_not_admin
 @loggable
-def report(update: Update, context: CallbackContext) -> str:
-    bot = context.bot
-    args = context.args
+def report(bot: Bot, update: Update) -> str:
     message = update.effective_message
     chat = update.effective_chat
     user = update.effective_user
