@@ -22,8 +22,8 @@ import tg_bot.modules.helper_funcs.cas_api as cas
 
 
 MARKDOWN_HELP = f"""
-Markdown is a very powerful formatting tool supported by telegram. {dispatcher.bot.first_name} has some enhancements, to make sure that \
-saved messages are correctly parsed, and to allow you to create buttons.
+Markdown  is a very powerful formatting tool supported by telegram. {dispatcher.bot.first_name} has some enhancements, to make sure that \
+saved messages are correctly parsed, and to allow you to create buttons and help u.
 
 - <code>_italic_</code>: wrapping text with '_' will produce italic text
 - <code>*bold*</code>: wrapping text with '*' will produce bold text
@@ -164,11 +164,6 @@ def info(bot: Bot, update: Update, args: List[str]):
     if disaster_level_present:
         text += ' [<a href="https://t.me/fateunionupdates/33">?</a>]'.format( bot.username)
 
-    text +="\n"
-    text += "\nCAS banned: "
-    result = cas.banchecker(user.id)
-    text += str(result)
-    text += "\n"
 
     for mod in USER_INFO:
         if mod.__mod_name__ == "Users":
@@ -180,6 +175,22 @@ def info(bot: Bot, update: Update, args: List[str]):
             mod_info = mod.__user_info__(user.id, chat.id)
         if mod_info:
             text += "\n" + mod_info
+        try:
+            profile = bot.get_user_profile_photos(user.id).photos[0][-1]
+            _file = bot.get_file(profile["file_id"])
+            _file.download(f"{user.id}.png")
+
+            message.reply_document(
+                document=open(f"{user.id}.png", "rb"),
+                caption=(text),
+                parse_mode=ParseMode.HTML,
+                disable_web_page_preview=True)
+
+            os.remove(f"{user.id}.png")
+        # Incase user don't have profile pic, send normal text
+        except IndexError:
+            message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+
 
     update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
