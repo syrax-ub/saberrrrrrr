@@ -110,7 +110,7 @@ def totranslate(bot: Bot, update: Update):
             "Reply to messages or write messages from other languages ​​for translating into the intended language\n\n"
             "Example: `/tr en ru` to translate from English to Russian\n"
             "Or use: `/tr ru` for automatic detection and translating it into russian.\n"
-            "See [List of Language Codes]https://t.me/fateunionupdates/32) for a list of language codes.",
+            "See [List of Language Codes](t.me/fateunionupdates/32) for a list of language codes.",
             parse_mode="markdown", disable_web_page_preview=True)
     except ValueError:
         update.effective_message.reply_text("The intended language is not found!")
