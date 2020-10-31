@@ -184,7 +184,7 @@ def info(bot: Bot, update: Update, args: List[str]):
 
   
 
-   update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+    update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 
 @run_async
