@@ -22,8 +22,8 @@ import tg_bot.modules.helper_funcs.cas_api as cas
 
 
 MARKDOWN_HELP = f"""
-Markdown is a very powerful formatting tool supported by telegram. {dispatcher.bot.first_name} has some enhancements, to make sure that \
-saved messages are correctly parsed, and to allow you to create buttons.
+Markdown  is a very powerful formatting tool supported by telegram. {dispatcher.bot.first_name} has some enhancements, to make sure that \
+saved messages are correctly parsed, and to allow you to create buttons and help u.
 
 - <code>_italic_</code>: wrapping text with '_' will produce italic text
 - <code>*bold*</code>: wrapping text with '*' will produce bold text
