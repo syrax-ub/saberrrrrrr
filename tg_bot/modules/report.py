@@ -1,16 +1,16 @@
-import html
 
-from tg_bot import (LOGGER, SUDO_USERS, TIGER_USERS, dispatcher)
-from tg_bot.modules.helper_funcs.chat_status import (user_admin,
-                                                           user_not_admin)
+import html
+from typing import List
+
+from telegram import Bot, Chat, Update, ParseMode
+from telegram.error import BadRequest, Unauthorized
+from telegram.ext import CommandHandler, RegexHandler, Filters, run_async
+from telegram.utils.helpers import mention_html
+
+from tg_bot import dispatcher, LOGGER, SUDO_USERS, TIGER_USERS
+from tg_bot.modules.helper_funcs.chat_status import user_not_admin, user_admin
 from tg_bot.modules.log_channel import loggable
 from tg_bot.modules.sql import reporting_sql as sql
-from telegram import (Chat, InlineKeyboardButton, InlineKeyboardMarkup,
-                      ParseMode, Update)
-from telegram.error import BadRequest, Unauthorized
-from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
-                          Filters, MessageHandler, run_async)
-from telegram.utils.helpers import mention_html
 
 REPORT_GROUP = 12
 REPORT_IMMUNE_USERS = SUDO_USERS + TIGER_USERS
