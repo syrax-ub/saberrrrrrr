@@ -1,6 +1,6 @@
 import html
 
-from tg_bot import (LOGGER, DRAGONS, TIGERS, WOLVES, dispatcher)
+from tg_bot import (LOGGER, SUDO_USERS, TIGER_USERS, dispatcher)
 from tg_bot.modules.helper_funcs.chat_status import (user_admin,
                                                            user_not_admin)
 from tg_bot.modules.log_channel import loggable
