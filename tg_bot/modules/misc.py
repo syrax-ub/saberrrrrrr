@@ -18,6 +18,7 @@ from tg_bot.modules.helper_funcs.chat_status import user_admin, sudo_plus, bot_a
 from tg_bot.modules.helper_funcs.extraction import extract_user
 from tg_bot.modules.sql.safemode_sql import set_safemode, is_safemoded
 import tg_bot.modules.sql.users_sql as sql
+import tg_bot.modules.helper_funcs.cas_api as cas
 
 
 MARKDOWN_HELP = f"""
