@@ -1,5 +1,6 @@
 # Oringinal Source from Nicegrill: https://github.com/erenmetesar/NiceGrill/
 # Ported to Lynda by: @pokurt
+#
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 from telethon.tl import types, functions
 from fontTools.ttLib import TTFont 
@@ -12,7 +13,7 @@ import random
 import json
 import os
 import re
-from tg_bot.lyn import lyndabot
+from tg_bot.lyn import saber
 
 COLORS = [
     "#F07975", "#F49F69", "#F9C84A", "#8CC56E", "#6CC7DC", "#80C1FA", "#BCB3F9", "#E181AC"]
