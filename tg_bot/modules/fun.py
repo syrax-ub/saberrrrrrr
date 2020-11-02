@@ -1,7 +1,6 @@
 import html
 import random
 import time
-from typing import List
 
 from telegram import Bot, Update, ParseMode
 from telegram.ext import run_async
