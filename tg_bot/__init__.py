@@ -3,6 +3,7 @@ import os
 import sys
 import time
 import telegram.ext as tg
+from telethon import TelegramClient
 
 StartTime = time.time()
 
@@ -152,6 +153,7 @@ DEV_USERS.add(123)
 DEV_USERS.add(123)
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
+telethn = TelegramClient("saber", API_ID, API_HASH)
 dispatcher = updater.dispatcher
 
 SUDO_USERS = list(SUDO_USERS) + list(DEV_USERS)
