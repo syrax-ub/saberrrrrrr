@@ -13,6 +13,14 @@
          "description": "Set this to True if you want ! to be a command prefix along with /",
          "value": "True"
       },
+      "API_ID": {
+         "description": "api id",
+         "value": "api id"
+      },
+      "API_HASH": {
+         "description": "api hash",
+         "value": "api hash"
+      },
       "BAN_STICKER": {
          "description": "ID of the sticker you want to use when banning people.",
          "required": false,
