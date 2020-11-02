@@ -18,7 +18,7 @@ def runs(bot: Bot, update: Update):
 
 
 @run_async
-def slap(bot: Bot, update: Update, args: List[str]):
+def slap(bot: Bot, update):
     message = update.effective_message
     chat = update.effective_chat
 
