@@ -14,7 +14,7 @@ def register(**args):
     args['pattern'] = pattern.replace('^/', r_pattern, 1)
 
     def decorator(func):
-        tbot.add_event_handler(func, events.NewMessage(**args))
+        telethn.add_event_handler(func, events.NewMessage(**args))
         return func
 
     return decorator
