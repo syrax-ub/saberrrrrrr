@@ -3,7 +3,7 @@ from telethon import events
 from tg_bot import telethn
 
 """Triggers start command in pm and in groupchats"""
-def saber(**args):
+def saberbot(**args):
     """New message."""
     pattern = args.get('pattern', None)
     r_pattern = r'^[/!]'
