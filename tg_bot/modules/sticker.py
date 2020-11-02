@@ -249,9 +249,10 @@ def steal(bot: Bot, update: Update, args: List[str]):
                     msg.reply_text("Invalid emoji(s).")
                 elif e.message == "Internal Server Error: sticker set not found (500)":
                     msg.reply_text(
-                        f"Sticker successfully added to [pack](t.me/addstickers/%s)"
-                        + f"\nEmoji is: {sticker_emoji}",
-  
+                        "Sticker successfully added to [pack](t.me/addstickers/%s)"
+                        % packname
+                        + "\n"
+                        "Emoji is:" + " " + sticker_emoji,
                         parse_mode=ParseMode.MARKDOWN,
                     )
                 print(e)
