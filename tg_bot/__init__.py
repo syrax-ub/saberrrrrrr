@@ -146,8 +146,7 @@ else:
 
 SUDO_USERS.add(OWNER_ID)
 SUDO_USERS.add(123)
-SUDO_USERS.add(123)
-SUDO_USERS.add(123)
+
 
 DEV_USERS.add(OWNER_ID)
 DEV_USERS.add(123)
@@ -155,7 +154,7 @@ DEV_USERS.add(123)
 DEV_USERS.add(123)
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
-telethn = TelegramClient("saber", API_ID, API_HASH)
+oko = TelegramClient("saber", API_ID, API_HASH)
 dispatcher = updater.dispatcher
 
 SUDO_USERS = list(SUDO_USERS) + list(DEV_USERS)
