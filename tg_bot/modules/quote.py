@@ -10,8 +10,7 @@ import random
 import json
 import os
 import re
-#from tg_bot.events import register
-from telegram.ext import CommandHandler,run_async
+from tg_bot.events import register
 
 COLORS = [
     "#F07975", "#F49F69", "#F9C84A", "#8CC56E", "#6CC7DC", "#80C1FA", "#BCB3F9", "#E181AC"]
@@ -373,8 +372,8 @@ async def replied_user(draw, tot, text, maxlength, title):
                 draw.text((180 + space, 132), letter, font=textfont, fill="white")
                 space += textfont.getsize(letter)[0]
                 
-@run_async
-def qoy(event):
+@register(pattern="^/q")
+async def _(event):
     if event.fwd_from:
         return
     reply = await event.get_reply_message()
@@ -389,5 +388,3 @@ def qoy(event):
     canvas.save('sticker.webp')
     await event.client.send_file(event.chat_id, "sticker.webp", reply_to=event.reply_to_msg_id)
     os.remove('sticker.webp')
-QUOTEO_HANDLER = CommandHandler("q", qoy)
-dispatcher.add_handler(QUOTEO_HANDLER)
