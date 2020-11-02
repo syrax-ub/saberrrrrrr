@@ -141,6 +141,9 @@ __help__ = """
  - /shout <keyword>: write anything you want to give loud shout.
  - /police : 🚔
  - /rlg : Join ears,nose,mouth and create an emo ;-;
+   Games:-
+ - /truth: for random truth
+ - /dare: for random dare
 """
 CUTIE_HANDLER = DisableAbleCommandHandler("cutie", cutie)
 ABUSE_HANDLER = DisableAbleCommandHandler(["abuse", "abuse"], abuse, admin_ok=True)
