@@ -1,5 +1,5 @@
 from telethon import events
-from tgbot import tbot
+from tg_bot import tbot
 
 
 def register(**args):
