@@ -23,7 +23,7 @@ def register(**args):
 def chataction(**args):
     """ Registers chat actions. """
     def decorator(func):
-        tbot.add_event_handler(func, events.ChatAction(**args))
+        telethn.add_event_handler(func, events.ChatAction(**args))
         return func
 
     return decorator
@@ -32,7 +32,7 @@ def chataction(**args):
 def userupdate(**args):
     """ Registers user updates. """
     def decorator(func):
-        tbot.add_event_handler(func, events.UserUpdate(**args))
+        telethn.add_event_handler(func, events.UserUpdate(**args))
         return func
 
     return decorator
