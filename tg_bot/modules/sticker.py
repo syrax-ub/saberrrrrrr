@@ -94,8 +94,13 @@ def steal(bot: Bot, update: Update, args: List[str]):
             if e.message == "Stickerset_invalid":
                 packname_found = 1
     stolensticker = "stolensticker.png"
+    is_animated = False
+    file_id = ""
     if msg.reply_to_message:
         if msg.reply_to_message.sticker:
+            if msg.reply_to_message.sticker.is_animated:
+                is_animated = True
+
             file_id = msg.reply_to_message.sticker.file_id
         elif msg.reply_to_message.photo:
             file_id = msg.reply_to_message.photo[-1].file_id
@@ -103,6 +108,11 @@ def steal(bot: Bot, update: Update, args: List[str]):
             file_id = msg.reply_to_message.document.file_id
         else:
             msg.reply_text("Yea, I can't steal that.")
+        if not is_animated:
+            stolen_file.download("stolensticker.png")
+        else:
+            stolen_file.download("stolensticker.tgs")
+
         stolen_file = bot.get_file(file_id)
         stolen_file.download("stolensticker.png")
         if args:
@@ -111,24 +121,27 @@ def steal(bot: Bot, update: Update, args: List[str]):
             sticker_emoji = msg.reply_to_message.sticker.emoji
         else:
             sticker_emoji = "🤔"
-        try:
-            im = Image.open(stolensticker)
-            maxsize = (512, 512)
-            if (im.width and im.height) < 512:
-                size1 = im.width
-                size2 = im.height
-                if im.width > im.height:
-                    scale = 512 / size1
-                    size1new = 512
-                    size2new = size2 * scale
-                else:
-                    scale = 512 / size2
-                    size1new = size1 * scale
-                    size2new = 512
-                size1new = math.floor(size1new)
-                size2new = math.floor(size2new)
-                sizenew = (size1new, size2new)
-                im = im.resize(sizenew)
+        
+
+        if not is_animated:
+            try:
+                im = Image.open(kangsticker)
+                maxsize = (512, 512)
+                if (im.width and im.height) < 512:
+                    size1 = im.width
+                    size2 = im.height
+                    if im.width > im.height:
+                        scale = 512 / size1
+                        size1new = 512
+                        size2new = size2 * scale
+                    else:
+                        scale = 512 / size2
+                        size1new = size1 * scale
+                        size2new = 512
+                    size1new = math.floor(size1new)
+                    size2new = math.floor(size2new)
+                    sizenew = (size1new, size2new)
+                    im = im.resize(sizenew)
             else:
                 im.thumbnail(maxsize)
             if not msg.reply_to_message.sticker:
