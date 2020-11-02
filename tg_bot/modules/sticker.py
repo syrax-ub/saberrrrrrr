@@ -255,7 +255,7 @@ def steal(bot: Bot, update: Update, args: List[str]):
                         "Emoji is:" + " " + sticker_emoji,
                         parse_mode=ParseMode.MARKDOWN,
                     )
-         else:          
+       else:         
             packname = "animated" + str(user.id) + "_by_" + bot.username
             packname_found = 0
             max_stickers = 50
