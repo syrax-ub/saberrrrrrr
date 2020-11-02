@@ -431,7 +431,8 @@ __help__ = """
 - /wiki {text}: Returns search from wikipedia for the input text
 - /paste - Do a paste at `neko.bin`
 - /t: while replying to a message, will reply with a grammar corrected version
-- /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats. - /safemode <on/off/yes/no>: Disallows new users to send media for 24 hours after joining a group.
+- /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
+- /safemode <on/off/yes/no>: Disallows new users to send media for 24 hours after joining a group.
     Use unmute to unrestrict them.
 - /ud <word>: Type the word or expression you want to search use.
 - /checkfw <model> <csc> - Samsung only - shows the latest firmware info for the given device, taken from samsung servers
