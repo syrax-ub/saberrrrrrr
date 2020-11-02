@@ -526,7 +526,7 @@ def main():
             updater.bot.set_webhook(url=URL + TOKEN)
 
     else:
-        LOGGER.info("Using long polling.")
+        LOGGER.info("saber is working ......")
         updater.start_polling(timeout=15, read_latency=4)
 
     if len(argv) not in (1, 3, 4):
@@ -540,3 +540,4 @@ if __name__ == '__main__':
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     telethn.start(bot_token=TOKEN)
     main()
+    LOGGER.info("Successfully loaded") 
