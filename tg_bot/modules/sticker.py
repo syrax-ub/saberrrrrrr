@@ -198,6 +198,121 @@ def steal(bot: Bot, update: Update, args: List[str]):
                     parse_mode=ParseMode.MARKDOWN,
                 )
             print(e)
+
+        else:
+            packname = "animated" + str(user.id) + "_by_" + context.bot.username
+            packname_found = 0
+            max_stickers = 50
+            while packname_found == 0:
+                try:
+                    stickerset = context.bot.get_sticker_set(packname)
+                    if len(stickerset.stickers) >= max_stickers:
+                        packnum += 1
+                        packname = (
+                            "animated"
+                            + str(packnum)
+                            + "_"
+                            + str(user.id)
+                            + "_by_"
+                            + context.bot.username
+                        )
+                    else:
+                        packname_found = 1
+                except TelegramError as e:
+                    if e.message == "Stickerset_invalid":
+                        packname_found = 1
+            try:
+                bot.add_sticker_to_set(
+                    user_id=user.id,
+                    name=packname,
+                    tgs_sticker=open("kangsticker.tgs", "rb"),
+                    emojis=sticker_emoji,
+                )
+                msg.reply_text(
+                    f"Sticker successfully added to [pack](t.me/addstickers/{packname})"
+                    + f"\nEmoji is: {sticker_emoji}",
+                    parse_mode=ParseMode.MARKDOWN,
+                )
+            except TelegramError as e:
+                if e.message == "Stickerset_invalid":
+                    makepack_internal(
+                        update,
+                        context,
+                        msg,
+                        user,
+                        sticker_emoji,
+                        packname,
+                        packnum,
+                        tgs_sticker=open("kangsticker.tgs", "rb"),
+                    )
+                elif e.message == "Invalid sticker emojis":
+                    msg.reply_text("Invalid emoji(s).")
+                elif e.message == "Internal Server Error: sticker set not found (500)":
+                    msg.reply_text(
+                        "Sticker successfully added to [pack](t.me/addstickers/%s)"
+                        % packname
+                        + "\n"
+                        "Emoji is:" + " " + sticker_emoji,
+                        parse_mode=ParseMode.MARKDOWN,
+                    )
+         else:          
+            packname = "animated" + str(user.id) + "_by_" + bot.username
+            packname_found = 0
+            max_stickers = 50
+            while packname_found == 0:
+                try:
+                    stickerset = context.bot.get_sticker_set(packname)
+                    if len(stickerset.stickers) >= max_stickers:
+                        packnum += 1
+                        packname = (
+                            "animated"
+                            + str(packnum)
+                            + "_"
+                            + str(user.id)
+                            + "_by_"
+                            + bot.username
+                        )
+                    else:
+                        packname_found = 1
+                except TelegramError as e:
+                    if e.message == "Stickerset_invalid":
+                        packname_found = 1
+            try:
+                bot.add_sticker_to_set(
+                    user_id=user.id,
+                    name=packname,
+                    tgs_sticker=open("stolensticker.tgs", "rb"),
+                    emojis=sticker_emoji,
+                )
+                msg.reply_text(
+                    f"Sticker successfully added to [pack](t.me/addstickers/{packname})"
+                    + f"\nEmoji is: {sticker_emoji}",
+                    parse_mode=ParseMode.MARKDOWN,
+                )
+            except TelegramError as e:
+                if e.message == "Stickerset_invalid":
+                    makepack_internal(
+                        update,
+                        msg,
+                        user,
+                        sticker_emoji,
+                        packname,
+                        packnum,
+                        tgs_sticker=open("kangsticker.tgs", "rb"),
+                    )
+                elif e.message == "Invalid sticker emojis":
+                    msg.reply_text("Invalid emoji(s).")
+                elif e.message == "Internal Server Error: sticker set not found (500)":
+                    msg.reply_text(
+                        "Sticker successfully added to [pack](t.me/addstickers/%s)"
+                        % packname
+                        + "\n"
+                        "Emoji is:" + " " + sticker_emoji,
+                        parse_mode=ParseMode.MARKDOWN,
+                    )
+                print(e)
+   
+
     elif args:
         try:
             try:
