@@ -19,7 +19,7 @@ from tg_bot.modules.helper_funcs.extraction import extract_user
 from tg_bot.modules.sql.safemode_sql import set_safemode, is_safemoded
 import tg_bot.modules.sql.users_sql as sql
 import tg_bot.modules.helper_funcs.cas_api as cas
-
+from tg_bot.modules.sql.afk_sql import is_afk, check_afk_status
 
 MARKDOWN_HELP = f"""
 Markdown  is a very powerful formatting tool supported by telegram. {dispatcher.bot.first_name} has some enhancements, to make sure that \
@@ -128,8 +128,11 @@ def info(bot: Bot, update: Update, args: List[str]):
 
     num_chats = sql.get_user_num_chats(user.id)
     text += f"\n🌍Chat count: <code>{num_chats}</code>"
-
-    try:
+       
+    afk_st = is_afk(user.id)
+    if afk_st:
+        text += _stext.format("AFK")
+    else:
         user_member = chat.get_member(user.id)
         if user_member.status == 'administrator':
             result = requests.post(f"https://api.telegram.org/bot{TOKEN}/getChatMember?chat_id={chat.id}&user_id={user.id}")
