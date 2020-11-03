@@ -427,6 +427,7 @@ def twrp(bot, update, args):
                                parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
 __help__ = """
+- /q : reply to any massages to make qoute
 - /wall {text};- search ur wallpapers
 - /wiki {text}: Returns search from wikipedia for the input text
 - /paste - Do a paste at `neko.bin`
