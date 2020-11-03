@@ -10,7 +10,7 @@ import random
 import json
 import os
 import re
-#from tg_bot.events import register
+from tg_bot.events import register
 from telegram.ext import CommandHandler,run_async
 
 COLORS = [
