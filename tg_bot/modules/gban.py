@@ -405,6 +405,17 @@ Gbans, also known as global bans, are used by the bot owners to ban spammers acr
 you and your groups by removing spam flooders as quickly as possible. They can be disabled for you group by calling \
 /gbanstat
 Note: You can appeal gbans or ask gbans at @fateunion
+ - /casver: Returns the API version that the bot is currently running
+ - /cascheck: Checks you or another user for CAS BAN
+*Admin only:*
+ - /setcas <on/off/true/false>: Enables/disables CAS Checking on welcome
+ - /getcas: Gets the current CAS settings
+ - /setban <on/off/true/false>: Enables/disables autoban on CAS banned user detected.
+ - /setdefense <on/off/true/false>: Turns on defense mode, will kick any new user automatically.
+ - /getdefense: gets the current defense setting
+ - /kicktime: gets the auto-kick time setting
+ - /setkicktime: sets new auto-kick time value (between 30 and 900 seconds)
+ -/cas : what is cas
 """
 
 GBAN_HANDLER = CommandHandler("gban", gban, pass_args=True)
@@ -420,7 +431,7 @@ dispatcher.add_handler(UNGBAN_HANDLER)
 dispatcher.add_handler(GBAN_LIST)
 dispatcher.add_handler(GBAN_STATUS)
 
-__mod_name__ = "Global Bans"
+__mod_name__ = "ANTI SPAM"
 __handlers__ = [GBAN_HANDLER, UNGBAN_HANDLER, GBAN_LIST, GBAN_STATUS]
 
 if STRICT_GBAN:  # enforce GBANS if this is set
