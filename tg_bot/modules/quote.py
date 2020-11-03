@@ -373,8 +373,8 @@ async def replied_user(draw, tot, text, maxlength, title):
                 draw.text((180 + space, 132), letter, font=textfont, fill="white")
                 space += textfont.getsize(letter)[0]
                 
-@run_async
-def qoy(event):
+@register(pattern="^/q")
+async def qoy(event):
     if event.fwd_from:
         return
     reply = await event.get_reply_message()
@@ -389,5 +389,3 @@ def qoy(event):
     canvas.save('sticker.webp')
     await event.client.send_file(event.chat_id, "sticker.webp", reply_to=event.reply_to_msg_id)
     os.remove('sticker.webp')
-    QUOTEO_HANDLER = CommandHandler("q", qoy)
-    dispatcher.add_handler(QUOTEO_HANDLER)
