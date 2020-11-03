@@ -5,7 +5,7 @@ import requests
 from typing import Optional, List
 from parsel import Selector
 from urllib.request import urlopen
-
+from sys import argv
 from telegram import Message, Chat, Update, Bot, User
 from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.error import Unauthorized, BadRequest, TimedOut, NetworkError, ChatMigrated, TelegramError
@@ -529,7 +529,11 @@ def main():
         LOGGER.info("saber is working ......")
         updater.start_polling(timeout=15, read_latency=4)
 
-    
+    if len(argv) not in (1, 3, 4):
+        oko.disconnect()
+    else:
+        oko.run_until_disconnected()
+
     updater.idle()
 
 
@@ -537,5 +541,4 @@ if __name__ == '__main__':
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     main()
     oko.start(bot_token=TOKEN)
-    oko.run_until_disconnected()
     LOGGER.info("Successfully loaded") 
