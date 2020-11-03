@@ -140,8 +140,9 @@ def info(bot: Bot, update: Update, args: List[str]):
             if "custom_title" in result.keys():
                 custom_title = result['custom_title']
                 text += f"\nThis user holds the title <b>{custom_title}</b> here."
-    except BadRequest:
-        pass
+    
+    except:
+           pass
 
     disaster_level_present = False
 
