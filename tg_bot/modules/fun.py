@@ -90,7 +90,7 @@ def shrug(bot: Bot, update: Update):
 @run_async
 def cutie(bot: Bot, update: Update):
     reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
-    reply_text = CUTIE_IMG
+    reply_photo(CUTIE_IMG)
     
 
 
