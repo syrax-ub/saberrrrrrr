@@ -537,4 +537,5 @@ if __name__ == '__main__':
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     main()
     oko.start(bot_token=TOKEN)
+    oko.run_until_disconnected()
     LOGGER.info("Successfully loaded") 
