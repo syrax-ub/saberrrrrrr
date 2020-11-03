@@ -427,6 +427,7 @@ def twrp(bot, update, args):
                                parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
 __help__ = """
+- /reverse: Does a reverse image search of the media which it was replied to sticker or images
 - /q : reply to any massages to make qoute
 - /wall {text};- search ur wallpapers
 - /wiki {text}: Returns search from wikipedia for the input text
