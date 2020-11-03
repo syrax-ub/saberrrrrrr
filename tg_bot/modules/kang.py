@@ -5,6 +5,7 @@ import math
 import re
 import requests
 import urllib.request as urllib
+from html import escape
 
 from io import BytesIO
 from PIL import Image
@@ -16,6 +17,7 @@ from telegram import TelegramError
 from telegram import Update, Bot
 from telegram.ext import CommandHandler, run_async
 from telegram.utils.helpers import escape_markdown
+mention_html
 
 from tg_bot import dispatcher
 
