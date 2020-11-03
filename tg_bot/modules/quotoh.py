@@ -11,7 +11,6 @@ import json
 import os
 import re
 from tg_bot.events import register
-from telegram.ext import CommandHandler,run_async
 
 COLORS = [
     "#F07975", "#F49F69", "#F9C84A", "#8CC56E", "#6CC7DC", "#80C1FA", "#BCB3F9", "#E181AC"]
