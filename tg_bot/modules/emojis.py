@@ -343,26 +343,6 @@ def kill(bot: Bot, update: Update):
 
 
 
-__help__ = """
-
-- /love ❣️
-
-- /hack 👨‍💻
-
-- /bombs 💣
-
-- /moonanimation 🌚
-
-- /clockanimation 🕛
-
-- /earthanimation 🌍
-
-- /blockanimation 🟥
-
-- /kill ⚰
-
-"""
-
 
 KILL_HANDLER = DisableAbleCommandHandler("kill",kill)
 LOVE_HANDLER = DisableAbleCommandHandler("love", love)
@@ -382,6 +362,6 @@ dispatcher.add_handler(CLOCKANIMATION_HANDLER)
 dispatcher.add_handler(BLOCKANIMATION_HANDLER)
 
 
-__mod_name__ = "Animations"
+
 __command_list__ = ["love", "hack", "bombs", "moonanimation", "clockanimation", "earthanimation", "blockanimation", "kill"]
 __handlers__ = [LOVE_HANDLER, HACK_HANDLER, BOMBS_HANDLER, MOONANIMATION_HANDLER, CLOCKANIMATION_HANDLER, EARTHANIMATION_HANDLER, BLOCKANIMATION_HANDLER, KILL_HANDLER]
