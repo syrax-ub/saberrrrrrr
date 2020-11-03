@@ -539,6 +539,6 @@ def main():
 
 if __name__ == '__main__':
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
-    main()
     oko.start(bot_token=TOKEN)
+    main()
     LOGGER.info("Successfully loaded") 
