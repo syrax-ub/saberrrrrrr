@@ -1,17 +1,25 @@
+
+import hashlib
 import os
 import math
+import re
+import requests
 import urllib.request as urllib
-from PIL import Image
-from html import escape
 
+from io import BytesIO
+from PIL import Image
+from bs4 import BeautifulSoup as bs
+
+from typing import Optional, List
 from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram import TelegramError
-from telegram.ext import run_async
-from telegram.utils.helpers import mention_html
+from telegram import Update, Bot
+from telegram.ext import CommandHandler, run_async
+from telegram.utils.helpers import escape_markdown
 
 from tg_bot import dispatcher
+
 from tg_bot.modules.disable import DisableAbleCommandHandler
-from tg_bot.modules.helper_funcs.alternate import typing_action
 
 combot_stickers_url = "https://combot.org/telegram/stickers?q="
 
@@ -94,7 +102,7 @@ def kang(bot: Bot, update: Update, args: List[str]):
                     im.thumbnail(maxsize)
                 if not msg.reply_to_message.sticker:
                     im.save(kangsticker, "PNG")
-                context.bot.add_sticker_to_set(
+                bot.add_sticker_to_set(
                     user_id=user.id,
                     name=packname,
                     png_sticker=open("kangsticker.png", "rb"),
@@ -114,8 +122,6 @@ def kang(bot: Bot, update: Update, args: List[str]):
             except TelegramError as e:
                 if e.message == "Stickerset_invalid":
                     makepack_internal(
-                        update,
-                        bot,
                         msg,
                         user,
                         sticker_emoji,
@@ -165,7 +171,7 @@ def kang(bot: Bot, update: Update, args: List[str]):
                             + "_"
                             + str(user.id)
                             + "_by_"
-                            + context.bot.username
+                            + bot.username
                         )
                     else:
                         packname_found = 1
@@ -173,7 +179,7 @@ def kang(bot: Bot, update: Update, args: List[str]):
                     if e.message == "Stickerset_invalid":
                         packname_found = 1
             try:
-                context.bot.add_sticker_to_set(
+                bot.add_sticker_to_set(
                     user_id=user.id,
                     name=packname,
                     tgs_sticker=open("kangsticker.tgs", "rb"),
@@ -187,8 +193,6 @@ def kang(bot: Bot, update: Update, args: List[str]):
             except TelegramError as e:
                 if e.message == "Stickerset_invalid":
                     makepack_internal(
-                        update,
-                        bot,
                         msg,
                         user,
                         sticker_emoji,
@@ -256,8 +260,6 @@ def kang(bot: Bot, update: Update, args: List[str]):
         except TelegramError as e:
             if e.message == "Stickerset_invalid":
                 makepack_internal(
-                    update,
-                    bot,
                     msg,
                     user,
                     sticker_emoji,
@@ -314,8 +316,6 @@ def kang(bot: Bot, update: Update, args: List[str]):
 
 
 def makepack_internal(
-    update,
-    bot,
     msg,
     user,
     emoji,
