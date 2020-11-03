@@ -125,7 +125,7 @@ def table(bot: Bot, update: Update):
 
 
 __help__ = """
- - /abuse abuse bad people
+ - /abuse: abuse bad people
  - /runs: reply a random string from an array of replies.
  - /slap: slap a user, or get slapped if not a reply.
  - /shrug : get shrug XD.
@@ -143,6 +143,15 @@ __help__ = """
    Games:-
  - /truth: for random truth
  - /dare: for random dare
+   ANIMATION :-
+ /love ❣️
+- /hack 👨‍💻
+- /bombs 💣
+- /moonanimation 🌚
+- /clockanimation 🕛
+- /earthanimation 🌍
+- /blockanimation 🟥
+- /kill ⚰
 """
 CUTIE_HANDLER = DisableAbleCommandHandler("cutie", cutie)
 ABUSE_HANDLER = DisableAbleCommandHandler(["abuse", "abuse"], abuse, admin_ok=True)
