@@ -374,7 +374,7 @@ async def replied_user(draw, tot, text, maxlength, title):
                 space += textfont.getsize(letter)[0]
                 
 @register(pattern="^/q")
-async def qoy(event):
+async def _(event):
     if event.fwd_from:
         return
     reply = await event.get_reply_message()
