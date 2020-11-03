@@ -181,8 +181,6 @@ def scam(imgspage, lim):
     return imglinks
 
 
-__mod_name__ = "GOOGLE SEARCH"
-
 REVERSE_HANDLER = DisableAbleCommandHandler("reverse", reverse, pass_args=True, admin_ok=True)
 
 dispatcher.add_handler(REVERSE_HANDLER)
