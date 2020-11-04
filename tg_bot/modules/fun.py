@@ -89,6 +89,7 @@ def shrug(bot: Bot, update: Update):
 
 @run_async
 def cutie(bot: Bot, update: Update):
+    name = message.reply_to_message.from_user.first_name if message.reply_to_message else message.from_user.first_name
     message = update.effective_message
     reply_animation = message.reply_to_message.reply_animation if message.reply_to_message else message.reply_animation   
     reply_animation(GIF_ID, caption=f'*Sanitizes {name}*')
