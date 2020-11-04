@@ -3,6 +3,8 @@ import random
 import tg_bot.modules.truth_and_dare_string as truth_and_dare_string
 from tg_bot import dispatcher
 from telegram import ParseMode, Update, Bot
+from tg_bot.modules.helper_funcs.chat_status import is_user_admin
+from tg_bot.modules.helper_funcs.extraction import extract_user
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from telegram.ext import run_async
 
