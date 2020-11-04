@@ -87,12 +87,6 @@ def shrug(bot: Bot, update: Update):
     reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
     reply_text(r"¯\_(ツ)_/¯")
 
-@run_async
-def cutie(bot: Bot, update: Update):
-    massage = update.effective_message
-    reply_animation = massage.reply_to_message.reply_animation if message.reply_to_message else message.reply_animation   
-    reply_animation(GIF_ID)
-
 
 @run_async
 def bluetext(bot: Bot, update: Update):
