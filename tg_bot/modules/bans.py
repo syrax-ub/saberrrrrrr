@@ -338,7 +338,7 @@ TEMPBAN_HANDLER = CommandHandler(["tban", "tempban"], temp_ban, pass_args=True)
 KICK_HANDLER = CommandHandler("kick", kick, pass_args=True)
 UNBAN_HANDLER = CommandHandler("unban", unban, pass_args=True)
 ROAR_HANDLER = CommandHandler("roar", selfunban, pass_args=True)
-PUNCHME_HANDLER = DisableAbleCommandHandler("kickme", kickme, filters=Filters.group)
+KICKME_HANDLER = DisableAbleCommandHandler("kickme", kickme, filters=Filters.group)
 
 dispatcher.add_handler(BAN_HANDLER)
 dispatcher.add_handler(TEMPBAN_HANDLER)
