@@ -74,7 +74,9 @@ DARE_HANDLER = DisableAbleCommandHandler("dare", dare)
 SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True
 
 dispatcher.add_handler(TRUTH_HANDLER)
+
 dispatcher.add_handler(DARE_HANDLER)
+
 dispatcher.add_handler(SLAP_HANDLER)
 
 __handlers__ = [SLAP_HANDLER,DARE_HANDLER,TRUTH_HANDLER]
