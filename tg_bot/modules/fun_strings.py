@@ -50,7 +50,7 @@ RUN_STRINGS = (
     "As The Doctor would say... RUN!",
 )
 
-SLAP_SAITAMA_TEMPLATES = (
+SLAP_SABER_TEMPLATES = (
     "Slap me one more time and I'll mute you.",
     "Stop slapping me. 😡.",
     [
