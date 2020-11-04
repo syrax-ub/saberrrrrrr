@@ -152,7 +152,6 @@ __help__ = """
 - /kill ⚰
 """
 DART_HANDLER = DisableAbleCommandHandler("dart", dart)
-CUTIE_HANDLER = DisableAbleCommandHandler("cutie", cutie)
 ABUSE_HANDLER = DisableAbleCommandHandler(["abuse", "abuse"], abuse, admin_ok=True)
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
 SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
@@ -164,7 +163,7 @@ RLG_HANDLER = DisableAbleCommandHandler("rlg", rlg)
 DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 
-dispatcher.add_handler(CUTIE_HANDLER)
+
 dispatcher.add_handler(DART_HANDLER)
 dispatcher.add_handler(ABUSE_HANDLER)
 dispatcher.add_handler(RUNS_HANDLER)
@@ -178,6 +177,6 @@ dispatcher.add_handler(DECIDE_HANDLER)
 dispatcher.add_handler(TABLE_HANDLER)
 
 __mod_name__ = "FUN"
-__command_list__ = ["runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table", "abuse", "cutie", "Dart"]
+__command_list__ = ["runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table", "abuse", "Dart"]
 __handlers__ = [RUNS_HANDLER, SLAP_HANDLER, ROLL_HANDLER, TOSS_HANDLER, SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER,
-                DECIDE_HANDLER, TABLE_HANDLER, CUTIE_HANDLER, DART_HANDLER ]
+                DECIDE_HANDLER, TABLE_HANDLER, DART_HANDLER ]
