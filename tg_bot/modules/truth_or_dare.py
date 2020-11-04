@@ -77,3 +77,4 @@ dispatcher.add_handler(TRUTH_HANDLER)
 dispatcher.add_handler(DARE_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
 
+__handlers__ = [SLAP_HANDLER,DARE_HANDLER,TRUTH_HANDLER]
