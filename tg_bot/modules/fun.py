@@ -144,8 +144,8 @@ __help__ = """
  Games:-
  - /truth: for random truth
  - /dare: for random dare
-   ANIMATION :-
- /love ❣️
+ ANIMATION :-
+ -/love ❣️
 - /hack 👨‍💻
 - /bombs 💣
 - /moonanimation 🌚
