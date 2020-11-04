@@ -330,7 +330,7 @@ __help__ = """
  - /ban <userhandle>: bans a user. (via handle, or reply)
  - /tban <userhandle> x(m/h/d): bans a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
  - /unban <userhandle>: unbans a user. (via handle, or reply)
- - /punch <userhandle>: Punches a user out of the group, (via handle, or reply)
+ - /kick <userhandle>: kick a user out of the group, (via handle, or reply)
 """
 
 BAN_HANDLER = CommandHandler("ban", ban, pass_args=True)
@@ -348,4 +348,4 @@ dispatcher.add_handler(ROAR_HANDLER)
 dispatcher.add_handler(KICKME_HANDLER)
 
 __mod_name__ = "BAN"
-__handlers__ = [BAN_HANDLER, TEMPBAN_HANDLER, PUNCH_HANDLER, UNBAN_HANDLER, ROAR_HANDLER, PUNCHME_HANDLER]
+__handlers__ = [BAN_HANDLER, TEMPBAN_HANDLER, KICK_HANDLER, UNBAN_HANDLER, ROAR_HANDLER, KICKME_HANDLER]
