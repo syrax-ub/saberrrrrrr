@@ -72,5 +72,5 @@ DARE_HANDLER = DisableAbleCommandHandler("dare", dare)
 
 dispatcher.add_handler(TRUTH_HANDLER)
 dispatcher.add_handler(DARE_HANDLER)
-
+dispatcher.add_handler(SLAP_HANDLER)
 
