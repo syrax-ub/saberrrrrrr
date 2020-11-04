@@ -1,9 +1,9 @@
 import html
 import random
-import alluka.modules.truth_and_dare_string as truth_and_dare_string
-from alluka import dispatcher
+import tg_bot.modules.truth_and_dare_string as truth_and_dare_string
+from tg_bot import dispatcher
 from telegram import ParseMode, Update, Bot
-from alluka.modules.disable import DisableAbleCommandHandler
+from tg_bot.modules.disable import DisableAbleCommandHandler
 from telegram.ext import run_async
 
 
