@@ -68,7 +68,7 @@ def slap(bot: Bot, update):
 
 TRUTH_HANDLER = DisableAbleCommandHandler("truth", truth)
 DARE_HANDLER = DisableAbleCommandHandler("dare", dare)
-
+SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True
 
 dispatcher.add_handler(TRUTH_HANDLER)
 dispatcher.add_handler(DARE_HANDLER)
