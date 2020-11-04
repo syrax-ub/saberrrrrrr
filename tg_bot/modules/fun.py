@@ -63,7 +63,7 @@ def slap(bot: Bot, update: Update, args: List[str]):
 
     reply_text(reply, parse_mode=ParseMode.HTML)
 
-CUTIE_IMG="https://telegra.ph/file/99f20f447fa48ebcfaa10.jpg"
+GIF_ID = 'CgACAgQAAx0CTyEuBAACN-Vfojd7QYmxTJpgNfad2WBBXhO1dgACaAgAAlZD0VEYs1ZphiAIUx4E'
 @run_async
 def roll(bot: Bot, update: Update):
     update.message.reply_text(random.choice(range(1, 7)))
@@ -89,9 +89,8 @@ def shrug(bot: Bot, update: Update):
 
 @run_async
 def cutie(bot: Bot, update: Update):
-    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
-    reply_photo(CUTIE_IMG)
-    
+    reply_animation = message.reply_to_message.reply_animation if message.reply_to_message else message.reply_animation   
+    reply_animation(GIF_ID, caption=f'*Sanitizes {name}*')
 
 
 @run_async
