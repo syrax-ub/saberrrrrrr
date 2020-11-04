@@ -24,7 +24,7 @@ def runs(bot: Bot, update: Update):
 
 
 @run_async
-def slap(bot: Bot, update):
+def slap(bot: Bot, update: Update):
     message = update.effective_message
     chat = update.effective_chat
 
@@ -71,7 +71,7 @@ def slap(bot: Bot, update):
 
 TRUTH_HANDLER = DisableAbleCommandHandler("truth", truth)
 DARE_HANDLER = DisableAbleCommandHandler("dare", dare)
-SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True
+SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
 
 dispatcher.add_handler(TRUTH_HANDLER)
 
