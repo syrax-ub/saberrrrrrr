@@ -66,7 +66,7 @@ def slap(bot: Bot, update):
 
     reply = temp.format(user1=user1, user2=user2, item=item, hits=hit, throws=throw)
 
-    reply_text(reply, parse_mode=ParseMode.HTML))
+    reply_text(reply, parse_mode=ParseMode.HTML)
 
 
 TRUTH_HANDLER = DisableAbleCommandHandler("truth", truth)
