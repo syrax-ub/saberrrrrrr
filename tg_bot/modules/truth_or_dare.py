@@ -1,6 +1,7 @@
 import html
 import random
 import tg_bot.modules.truth_and_dare_string as truth_and_dare_string
+import tg_bot.modules.fun_strings as fun_strings
 from tg_bot import dispatcher
 from telegram import ParseMode, Update, Bot
 from tg_bot.modules.helper_funcs.chat_status import is_user_admin
