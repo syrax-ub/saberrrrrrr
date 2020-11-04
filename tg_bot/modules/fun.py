@@ -89,8 +89,8 @@ def shrug(bot: Bot, update: Update):
 
 @run_async
 def cutie(bot: Bot, update: Update):
-    msg = update.effective_message
-    reply_animation = msg.reply_to_message.reply_animation if message.reply_to_message else message.reply_animation   
+    massage = update.effective_message
+    reply_animation = massage.reply_to_message.reply_animation if message.reply_to_message else message.reply_animation   
     reply_animation(GIF_ID)
 
 
