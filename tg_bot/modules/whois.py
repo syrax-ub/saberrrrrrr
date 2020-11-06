@@ -23,7 +23,7 @@ import tg_bot.modules.sql.users_sql as sql
 import tg_bot.modules.helper_funcs.cas_api as cas
 
 @run_async
-def whois(bot: Bot, update: Update, args: List[str]):
+def info(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message
     chat = update.effective_chat
     user_id = extract_user(update.effective_message, args)
@@ -122,5 +122,5 @@ def whois(bot: Bot, update: Update, args: List[str]):
     except IndexError:
         message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
-WHOIS_HANDLER = DisableAbleCommandHandler("whois", whois, pass_args=True)
-dispatcher.add_handler(WHOIS_HANDLER)
+INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
+dispatcher.add_handler(INFO_HANDLER)
