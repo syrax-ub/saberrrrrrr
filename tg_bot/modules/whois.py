@@ -119,9 +119,9 @@ def whois(bot: Bot, update: Update, args: List[str]):
           parse_mode=ParseMode.HTML,
           disable_web_page_preview=True)
 
-    os.remove(f"{user.id}.png")
+        os.remove(f"{user.id}.png")
         # Incase user don't have profile pic, send normal text
-except IndexError:
+    except IndexError:
     message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
     else:
