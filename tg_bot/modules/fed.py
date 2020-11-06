@@ -36,7 +36,7 @@ from tg_bot import (
     OWNER_ID,
     SUDO_USERS,
     WHITELIST_USERS,
-    TIGER_USERS
+    TIGER_USERS,
     GBAN_LOGS,
     LOGGER,
 )
