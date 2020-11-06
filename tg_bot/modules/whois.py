@@ -124,3 +124,4 @@ def info(bot: Bot, update: Update, args: List[str]):
 
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
 dispatcher.add_handler(INFO_HANDLER)
+__handlers__=[INFO_HANDLER]
