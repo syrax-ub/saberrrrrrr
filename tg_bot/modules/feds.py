@@ -14,7 +14,7 @@ from telegram import ParseMode, Update, Bot, Chat, User, MessageEntity, InlineKe
 from telegram.ext import run_async, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
 from telegram.utils.helpers import escape_markdown, mention_html, mention_markdown
 
-from tg_bot import dispatcher, OWNER_ID, SUDO_USERS, WHITELIST_USERS, LOGGER
+from tg_bot import dispatcher, OWNER_ID, SUDO_USERS, WHITELIST_USERS, LOGGER,MESSAGE_DUMP
 from tg_bot.modules.helper_funcs.handlers import CMD_STARTERS
 from tg_bot.modules.helper_funcs.misc import is_module_loaded, send_to_list
 from tg_bot.modules.helper_funcs.chat_status import is_user_admin
