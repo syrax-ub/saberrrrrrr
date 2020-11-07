@@ -294,23 +294,6 @@ def __chat_settings__(chat_id, user_id):
     return "This chat has it's welcome preference set to `{}`.\n" \
            "It's goodbye preference is `{}`.".format(welcome_pref, goodbye_pref)
 
-__help__ = """
-{}
-Commands:
- - /casver: Returns the API version that the bot is currently running
- - /cascheck: Checks you or another user for CAS BAN
-*Admin only:*
- - /setcas <on/off/true/false>: Enables/disables CAS Checking on welcome
- - /getcas: Gets the current CAS settings
- - /setban <on/off/true/false>: Enables/disables autoban on CAS banned user detected.
- - /setdefense <on/off/true/false>: Turns on defense mode, will kick any new user automatically.
- - /getdefense: gets the current defense setting
- - /kicktime: gets the auto-kick time setting
- - /setkicktime: sets new auto-kick time value (between 30 and 900 seconds)
- - /cas: Info about CAS. (What is CAS?)
-"""
-
-__mod_name__ = "CAS"
 
 SETCAS_HANDLER = CommandHandler("setcas", setcas, filters=Filters.group)
 GETCAS_HANDLER = CommandHandler("getcas", get_current_setting, filters=Filters.group)

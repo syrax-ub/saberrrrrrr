@@ -427,11 +427,14 @@ def twrp(bot, update, args):
                                parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
 __help__ = """
+- /reverse: Does a reverse image search of the media which it was replied to sticker or images
+- /q : reply to any massages to make qoute
 - /wall {text};- search ur wallpapers
 - /wiki {text}: Returns search from wikipedia for the input text
 - /paste - Do a paste at `neko.bin`
 - /t: while replying to a message, will reply with a grammar corrected version
-- /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats. - /safemode <on/off/yes/no>: Disallows new users to send media for 24 hours after joining a group.
+- /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
+- /safemode <on/off/yes/no>: Disallows new users to send media for 24 hours after joining a group.
     Use unmute to unrestrict them.
 - /ud <word>: Type the word or expression you want to search use.
 - /checkfw <model> <csc> - Samsung only - shows the latest firmware info for the given device, taken from samsung servers
@@ -446,7 +449,6 @@ Available queries : Country Code/Country Name/Timezone Name
 
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True)
 GIFID_HANDLER = DisableAbleCommandHandler("gifid", gifid)
-INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
 ECHO_HANDLER = DisableAbleCommandHandler("echo", echo, filters=Filters.group)
 MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, filters=Filters.private)
 STATS_HANDLER = CommandHandler("stats", stats)
@@ -459,7 +461,6 @@ SAFEMODE_HANDLER = CommandHandler("safemode", safe_mode, pass_args=True)
 
 dispatcher.add_handler(ID_HANDLER)
 dispatcher.add_handler(GIFID_HANDLER)
-dispatcher.add_handler(INFO_HANDLER)
 dispatcher.add_handler(ECHO_HANDLER)
 dispatcher.add_handler(MD_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
@@ -470,6 +471,6 @@ dispatcher.add_handler(GETFW_HANDLER)
 dispatcher.add_handler(CHECKFW_HANDLER)
 
 
-__mod_name__ = "EXTRA"
-__command_list__ = ["id", "info", "echo"]
-__handlers__ = [ID_HANDLER, GIFID_HANDLER, INFO_HANDLER, ECHO_HANDLER, MD_HELP_HANDLER, STATS_HANDLER, SAFEMODE_HANDLER, MAGISK_HANDLER, TWRP_HANDLER, GETFW_HANDLER, CHECKFW_HANDLER]
+__mod_name__ = "Extra"
+__command_list__ = ["id", "echo"]
+__handlers__ = [ID_HANDLER, GIFID_HANDLER, ECHO_HANDLER, MD_HELP_HANDLER, STATS_HANDLER, SAFEMODE_HANDLER, MAGISK_HANDLER, TWRP_HANDLER, GETFW_HANDLER, CHECKFW_HANDLER]

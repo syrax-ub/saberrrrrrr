@@ -23,7 +23,7 @@ import tg_bot.modules.sql.users_sql as sql
 import tg_bot.modules.helper_funcs.cas_api as cas
 
 @run_async
-def whois(bot: Bot, update: Update, args: List[str]):
+def info(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message
     chat = update.effective_chat
     user_id = extract_user(update.effective_message, args)
@@ -70,7 +70,11 @@ def whois(bot: Bot, update: Update, args: List[str]):
     except BadRequest:
         pass
 
-   
+    
+
+    
+    if user.id ==1286562476:
+        text += "\n🚶🏻‍♂️Uff,This person is my cute\nI e is the cutie!."
 
     if user.id == OWNER_ID:
         text += "\n🚶🏻‍♂️Uff,This person is my Owner🤴\nI would never do anything against him!."
@@ -110,10 +114,18 @@ def whois(bot: Bot, update: Update, args: List[str]):
             text += "\n" + mod_info
     try:
         profile = bot.get_user_profile_photos(user.id).photos[0][-1]
-        bot.sendChatAction(chat.id, "upload_photo")
-        bot.send_photo(chat.id, photo=profile, caption=(text), parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-    except IndexError:
-        update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+        _file = bot.get_file(profile["file_id"])
+        _file.download(f"{user.id}.png")
 
-WHOIS_HANDLER = DisableAbleCommandHandler("whois", whois, pass_args=True)
-dispatcher.add_handler(WHOIS_HANDLER)
+        message.reply_document(
+         document=open(f"{user.id}.png", "rb"),
+         caption=(text),
+          parse_mode=ParseMode.HTML,
+          disable_web_page_preview=True)
+
+    except IndexError:
+        message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
+
+INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
+dispatcher.add_handler(INFO_HANDLER)
+__handlers__=[INFO_HANDLER]

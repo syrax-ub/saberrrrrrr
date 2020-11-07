@@ -141,6 +141,18 @@ __help__ = """
  - /shout <keyword>: write anything you want to give loud shout.
  - /police : 🚔
  - /rlg : Join ears,nose,mouth and create an emo ;-;
+ Games:-
+ - /truth: for random truth
+ - /dare: for random dare
+ ANIMATION :-
+ -/love ❣️
+- /hack 👨‍💻
+- /bombs 💣
+- /moonanimation 🌚
+- /clockanimation 🕛
+- /earthanimation 🌍
+- /blockanimation 🟥
+- /kill ⚰
 """
 CUTIE_HANDLER = DisableAbleCommandHandler("cutie", cutie)
 ABUSE_HANDLER = DisableAbleCommandHandler(["abuse", "abuse"], abuse, admin_ok=True)
@@ -166,7 +178,7 @@ dispatcher.add_handler(RLG_HANDLER)
 dispatcher.add_handler(DECIDE_HANDLER)
 dispatcher.add_handler(TABLE_HANDLER)
 
-__mod_name__ = "FUN"
+__mod_name__ = "Fun"
 __command_list__ = ["runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table", "abuse", "cutie"]
 __handlers__ = [RUNS_HANDLER, SLAP_HANDLER, ROLL_HANDLER, TOSS_HANDLER, SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER,
                 DECIDE_HANDLER, TABLE_HANDLER, CUTIE_HANDLER]

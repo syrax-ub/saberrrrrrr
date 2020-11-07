@@ -1,5 +1,3 @@
-# Simple lyrics module using tswift by @TheRealPhoenix
-
 from tswift import Song
 
 from telegram import Bot, Update, Message, Chat
@@ -36,16 +34,6 @@ def lyrics(bot: Bot, update: Update, args):
             msg.reply_text(reply)
                 
         
-                
-__help__ = """
-Want to get the lyrics of your favorite songs straight from the app? This module is perfect for that!
-*Available commands:*
- - /lyrics <song>: returns the lyrics of that song.
- You can either enter just the song name or both the artist and song name.
-"""
-
-__mod_name__ = "SONGS LYRICS"
-
 
 
 LYRICS_HANDLER = DisableAbleCommandHandler("lyrics", lyrics, pass_args=True)

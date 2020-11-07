@@ -25,4 +25,5 @@ wikipedia
 pyowm
 tabulate
 parsel
-telethon
+telethon==1.16.4
+fontTools

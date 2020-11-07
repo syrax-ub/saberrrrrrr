@@ -32,16 +32,16 @@ def warn(user: User, chat: Chat, reason: str, message: Message, warner: User = N
 
     if user.id in TIGER_USERS:
         if warner:
-            message.reply_text("Tigers cant be warned.")
+            message.reply_text("shadow cant be warned.")
         else:
-            message.reply_text("Tiger triggered an auto warn filter!\n I can't warn tigers but they should avoid abusing this.")
+            message.reply_text("shadow triggered an auto warn filter!\n I can't warn tigers but they should avoid abusing this.")
         return
 
     if user.id in WHITELIST_USERS:
         if warner:
-            message.reply_text("Wolf disasters are warn immune.")
+            message.reply_text("Human are warn immune.")
         else:
-            message.reply_text("Wolf Disaster triggered an auto warn filter!\n I can't warn wolves but they should avoid abusing this.")
+            message.reply_text("Human Disaster triggered an auto warn filter!\n I can't warn wolves but they should avoid abusing this.")
         return
 
     if warner:
@@ -401,7 +401,7 @@ be a sentence, encompass it with quotes, as such: `/addwarn "very angry" This is
  - /strongwarn <on/yes/off/no>: If set to on, exceeding the warn limit will result in a ban. Else, will just punch.
 """
 
-__mod_name__ = "WARNINGS"
+__mod_name__ = "Warns"
 
 WARN_HANDLER = CommandHandler("warn", warn_user, pass_args=True, filters=Filters.group)
 RESET_WARN_HANDLER = CommandHandler(["resetwarn", "resetwarns"], reset_warns, pass_args=True, filters=Filters.group)

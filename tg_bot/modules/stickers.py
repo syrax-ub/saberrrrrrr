@@ -346,7 +346,7 @@ __help__ = """
 - /stickers: try sticker pack u wanna search (/stickers saber )
 """
 
-__mod_name__ = "STICKERS"
+__mod_name__ = "Stickers"
 STICKERS_HANDLER = DisableAbleCommandHandler("stickers", cb_sticker)
 
 dispatcher.add_handler(STICKERID_HANDLER)
