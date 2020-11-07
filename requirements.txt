@@ -27,3 +27,5 @@ tabulate
 parsel
 telethon==1.16.4
 fontTools
+pyrogram
+tgcrypto
