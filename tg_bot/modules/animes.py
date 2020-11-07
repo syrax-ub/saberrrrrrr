@@ -10,11 +10,11 @@ from telegram import Bot, Update, InlineKeyboardButton, InlineKeyboardMarkup, Pa
 from telegram.ext import CallbackQueryHandler, run_async
 
 # This module is adapted from: github.com/AnimeKaizoku/SaitamaRobot
-from tg_bot import OWNER_ID, SUDO_USERS, dispatcher
-from tg_bot.modules.disable import DisableAbleCommandHandler
+from hitsuki import OWNER_ID, SUDO_USERS, dispatcher
+from hitsuki.modules.disable import DisableAbleCommandHandler
 
 info_btn = "More Information"
-kaizoku_btn = "gogoanime ☠️"
+kaizoku_btn = "Kaizoku ☠️"
 kayo_btn = "Kayo 🏴‍☠️"
 prequel_btn = "⬅️ Prequel"
 sequel_btn = "Sequel ➡️"
@@ -499,8 +499,8 @@ def site_search(bot: Bot, update: Update, site: str):
         message.reply_text("Give something to search")
         return
 
-    if site == "gogoanime":
-        search_url = f"https://gogoanime.so/?s={search_query}"
+    if site == "kaizoku":
+        search_url = f"https://animekaizoku.com/?s={search_query}"
         html_text = requests.get(search_url).text
         soup = bs4.BeautifulSoup(html_text, "html.parser")
         search_result = soup.find_all("h2", {'class': "post-title"})
@@ -556,9 +556,11 @@ def kayo(bot: Bot, update: Update):
     site_search(bot, update, "kayo")
 
 
-__help__ = """
+_help__ = """
 Get information about anime, manga or characters from [AniList](anilist.co).
+
 *Available commands:*
+
  • `/anime <anime>`*:* returns information about the anime.
  • `/character <character>`*:* returns information about the character.
  • `/manga <manga>`*:* returns information about the manga.
@@ -567,7 +569,9 @@ Get information about anime, manga or characters from [AniList](anilist.co).
  • `/kaizoku <anime>`*:* search an anime on animekaizoku.com
  • `/kayo <anime>`*:* search an anime on animekayo.com
  • `/airing <anime>`*:* returns anime airing info.
+
  """
+
 
 ANIME_HANDLER = DisableAbleCommandHandler("anime", anime)
 AIRING_HANDLER = DisableAbleCommandHandler("airing", airing)
@@ -588,6 +592,7 @@ dispatcher.add_handler(USER_HANDLER)
 dispatcher.add_handler(KAIZOKU_SEARCH_HANDLER)
 dispatcher.add_handler(KAYO_SEARCH_HANDLER)
 dispatcher.add_handler(UPCOMING_HANDLER)
+
 __mod_name__ = "Anime"
 __command_list__ = [
     "anime", "manga", "character", "user", "upcoming", "kaizoku", "airing",
