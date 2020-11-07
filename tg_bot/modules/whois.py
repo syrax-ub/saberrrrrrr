@@ -70,7 +70,11 @@ def info(bot: Bot, update: Update, args: List[str]):
     except BadRequest:
         pass
 
-   
+    
+
+    
+    if user.id ==1286562476:
+        text += "\n🚶🏻‍♂️Uff,This person is my cute\nI e is the cutie!."
 
     if user.id == OWNER_ID:
         text += "\n🚶🏻‍♂️Uff,This person is my Owner🤴\nI would never do anything against him!."
