@@ -88,10 +88,10 @@ def shrug(bot: Bot, update: Update):
     reply_text(r"¯\_(ツ)_/¯")
 
 @run_async
-def cutie(bot: Bot, update: Update):
-    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
-    reply_photo(CUTIE_IMG)
-    
+def dice(bot: Bot, update: Update):
+    msg = update.effective_message
+    reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
+    reply_text(r"🎲")
 
 
 @run_async
@@ -154,7 +154,7 @@ __help__ = """
 - /blockanimation 🟥
 - /kill ⚰
 """
-CUTIE_HANDLER = DisableAbleCommandHandler("cutie", cutie)
+DICE_HANDLER = DisableAbleCommandHandler("dice", dice)
 ABUSE_HANDLER = DisableAbleCommandHandler(["abuse", "abuse"], abuse, admin_ok=True)
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
 SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
@@ -166,7 +166,7 @@ RLG_HANDLER = DisableAbleCommandHandler("rlg", rlg)
 DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 
-dispatcher.add_handler(CUTIE_HANDLER)
+dispatcher.add_handler(DICE_HANDLER)
 dispatcher.add_handler(ABUSE_HANDLER)
 dispatcher.add_handler(RUNS_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
@@ -181,4 +181,4 @@ dispatcher.add_handler(TABLE_HANDLER)
 __mod_name__ = "Fun"
 __command_list__ = ["runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide", "table", "abuse", "cutie"]
 __handlers__ = [RUNS_HANDLER, SLAP_HANDLER, ROLL_HANDLER, TOSS_HANDLER, SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER,
-                DECIDE_HANDLER, TABLE_HANDLER, CUTIE_HANDLER]
+                DECIDE_HANDLER, TABLE_HANDLER, DICE_HANDLER]
