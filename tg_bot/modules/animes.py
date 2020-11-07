@@ -14,7 +14,7 @@ from tg_bot import OWNER_ID, SUDO_USERS, dispatcher
 from tg_bot.modules.disable import DisableAbleCommandHandler
 
 info_btn = "More Information"
-kaizoku_btn = "Kaizoku ☠️"
+kaizoku_btn = "gogoanime ☠️"
 kayo_btn = "Kayo 🏴‍☠️"
 prequel_btn = "⬅️ Prequel"
 sequel_btn = "Sequel ➡️"
@@ -499,8 +499,8 @@ def site_search(bot: Bot, update: Update, site: str):
         message.reply_text("Give something to search")
         return
 
-    if site == "kaizoku":
-        search_url = f"https://animekaizoku.com/?s={search_query}"
+    if site == "gogoanime":
+        search_url = f"https://gogoanime.so/?s={search_query}"
         html_text = requests.get(search_url).text
         soup = bs4.BeautifulSoup(html_text, "html.parser")
         search_result = soup.find_all("h2", {'class': "post-title"})
