@@ -154,7 +154,7 @@ DEV_USERS.add(OWNER_ID)
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
 oko = TelegramClient("saber", API_ID, API_HASH)
-pbot = Client("saberPyro", api_id=API_KEY, api_hash=API_HASH, bot_token=TOKEN)
+pbot = Client("saberPyro", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 dispatcher = updater.dispatcher
 
 SUDO_USERS = list(SUDO_USERS) + list(DEV_USERS)
