@@ -6,6 +6,7 @@ from typing import Optional, List
 from parsel import Selector
 from urllib.request import urlopen
 from sys import argv
+from pyrogram import idle, Client
 from telegram import Message, Chat, Update, Bot, User
 from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.error import Unauthorized, BadRequest, TimedOut, NetworkError, ChatMigrated, TelegramError
@@ -14,7 +15,7 @@ from telegram.ext.dispatcher import run_async, DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
 
 from tg_bot import dispatcher, updater, TOKEN, WEBHOOK, OWNER_ID, CERT_PATH, PORT, URL, LOGGER, \
-    ALLOW_EXCL,oko
+    ALLOW_EXCL,oko,pbot
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
 from tg_bot.modules import ALL_MODULES
@@ -540,5 +541,7 @@ def main():
 if __name__ == '__main__':
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     oko.start(bot_token=TOKEN)
+    pbot.start()
     main()
+    idle()
     LOGGER.info("Successfully loaded") 
