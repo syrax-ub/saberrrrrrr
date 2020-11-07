@@ -17,7 +17,7 @@ async def dice(c: Client, m: Message):
     await dicen.reply_text(f"The dice stopped at the number {dicen.dice.value}", quote=True)
 
 
-@pbot.on_message(filters.command("pyroid") & filters.private)
+@pbot.on_message(filters.command("dinfo") & filters.private)
 async def ids_private(c: Client, m: Message):
     await m.reply_text("<b>Info:</b>\n\n"
                        "<b>Name:</b> <code>{first_name} {last_name}</code>\n"
@@ -35,7 +35,7 @@ async def ids_private(c: Client, m: Message):
                        parse_mode="HTML")
 
 
-@pbot.on_message(filters.command("pyroid") & filters.group)
+@pbot.on_message(filters.command("dinfo") & filters.group)
 async def ids(c: Client, m: Message):
     data = m.reply_to_message or m
     await m.reply_text("<b>Info:</b>\n\n"
