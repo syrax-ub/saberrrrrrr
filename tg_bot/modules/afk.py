@@ -111,16 +111,15 @@ def check_afk(bot, update, user_id, fst_name, userc_id):
     chat = update.effective_chat
     if sql.is_afk(user_id):
         user = sql.check_afk_status(user_id)
-        if not user.reason:
-            if int(userc_id) == int(user_id):
+    if not reason:
+        if int(userc_id) == int(user_id):
                 return
-            res = tld(chat.id, "status_afk_noreason").format(fst_name)
-            update.effective_message.reply_text(res)
+        res = "{} is AFK!".format(fst_name)
+    
         else:
             if int(userc_id) == int(user_id):
                 return
-            res = tld(chat.id,
-                      "status_afk_reason").format(fst_name, user.reason)
+            res = "{} is AFK!\nReason:\n{}".format(fst_name, reason)
             update.effective_message.reply_text(res)
 
 
