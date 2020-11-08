@@ -11,6 +11,7 @@ from pyrogram.types import Message
 from tg_bot import TOKEN, OWNER_ID ,SUDO_USERS, pbot
 
 DART_E_MOJI = "🎯"
+FOOTBALL_E_MOJI="⚽"
 
 @pbot.on_message(filters.command('dice'))
 async def dice(c: Client, m: Message):
@@ -28,6 +29,22 @@ async def throw_dart(client, message):
     await client.send_dice(
         chat_id=message.chat.id,
         emoji=DART_E_MOJI,
+        disable_notification=True,
+        reply_to_message_id=rep_mesg_id
+    )
+
+
+@pbot.on_message(
+    filters.command("football")
+)
+async def throw_football(client, message):
+    """ /football an @Animatedfootball """
+    rep_mesg_id = message.message_id
+    if message.reply_to_message:
+        rep_mesg_id = message.reply_to_message.message_id
+    await client.send_dice(
+        chat_id=message.chat.id,
+        emoji=FOOTBALL_E_MOJI,
         disable_notification=True,
         reply_to_message_id=rep_mesg_id
     )
