@@ -11,7 +11,7 @@ from tg_bot import pbot
 import os
 import time
 
-@Client.on_message(
+@pbot.on_message(
     filters.command(whois)
 )
 async def who_is(client, message):
