@@ -49,12 +49,19 @@ def no_longer_afk(bot: Bot, update: Update):
     if res:
         if message.new_chat_members:  #dont say msg
             return
-        firstname = update.effective_user.first_name
-        try:
-            message.reply_text(
-                tld(chat.id, "user_no_longer_afk").format(firstname))
-        except Exception:
-            return
+        options = [
+            '{} is here!',
+            '{} is back!',
+            '{} is now in the chat!',
+            '{} is awake!',
+            '{} is back online!',
+            '{} is finally here!',
+            'Welcome back!, {}',
+            'Where is {}?\nIn the chat!'
+        ]
+        chosen_option = random.choice(options)
+        update.effective_message.reply_text(chosen_option.format(update.effective_user.first_name))
+
 
 
 @run_async
