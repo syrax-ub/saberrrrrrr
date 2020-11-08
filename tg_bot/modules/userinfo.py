@@ -137,6 +137,7 @@ __help__ = """
  - /setbio <text>`*:* while replying, will save another user's bio 
 *Overall Information about you:*
  - /info`*:* get information about a user.
+ - /dinfo *:* sake as info with some extra info
 """
 
 SET_BIO_HANDLER = DisableAbleCommandHandler("setbio", set_about_bio)
