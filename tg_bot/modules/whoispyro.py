@@ -1,15 +1,15 @@
 """Get info about the replied user
 Syntax: .whois"""
+import os
+import time
 from datetime import datetime
-
 from pyrogram import filters
 from pyrogram.types import User, Message
 from pyrogram.raw import functions
-from tg_bot.helper_funcs.extract_user
 from pyrogram.errors import PeerIdInvalid
 from tg_bot import pbot
-import os
-import time
+from tg_bot.modules.helper_funcs.extraction import extract_user
+
 
 @pbot.on_message(
     filters.command(whois)
