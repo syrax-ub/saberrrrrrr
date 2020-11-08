@@ -10,11 +10,28 @@ from pyrogram.types import Message
 
 from tg_bot import TOKEN, OWNER_ID ,SUDO_USERS, pbot
 
+DART_E_MOJI = "🎯"
 
 @pbot.on_message(filters.command('dice'))
 async def dice(c: Client, m: Message):
     dicen = await c.send_dice(m.chat.id, reply_to_message_id=m.message_id)
     await dicen.reply_text(f"The dice stopped at the number {dicen.dice.value}", quote=True)
+
+@pbot.on_message(
+    filters.command(["throw", "dart"], COMMAND_HAND_LER) &
+    f_onw_fliter
+)
+async def throw_dart(client, message):
+    """ /throw an @AnimatedDart """
+    rep_mesg_id = message.message_id
+    if message.reply_to_message:
+        rep_mesg_id = message.reply_to_message.message_id
+    await client.send_dice(
+        chat_id=message.chat.id,
+        emoji=DART_E_MOJI,
+        disable_notification=True,
+        reply_to_message_id=rep_mesg_id
+    )
 
 
 @pbot.on_message(filters.command("dinfo") & filters.private)
