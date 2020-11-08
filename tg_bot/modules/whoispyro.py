@@ -1,14 +1,15 @@
 """Get info about the replied user
 Syntax: .whois"""
-
 from datetime import datetime
+
+from pyrogram import filters
+from pyrogram.types import User, Message
+from pyrogram.raw import functions
+from tg_bot.helper_funcs.extract_user
+from pyrogram.errors import PeerIdInvalid
+from tg_bot import pbot
 import os
 import time
-from datetime import datetime
-from pyrogram import Client, filters
-from pyrogram.errors import UserNotParticipant
-from tg_bot.helper_functions.extract_user import extract_user
-from tg_bot import pbot
 
 @Client.on_message(
     filters.command(whois)
