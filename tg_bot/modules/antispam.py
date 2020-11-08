@@ -351,7 +351,7 @@ def enforce_gban(bot: Bot, update: Update):
 
 @run_async
 @user_admin
-def gbanstat(bot: Bot, update: Update, args: List[str]):
+def antispam(bot: Bot, update: Update, args: List[str]):
     if len(args) > 0:
         if args[0].lower() in ["on", "yes"]:
             sql.enable_gbans(update.effective_chat.id)
@@ -399,11 +399,8 @@ def __chat_settings__(chat_id, user_id):
 
 __help__ = """
 *Admin only:*
- - /gbanstat <on/off/yes/no>: Will disable the effect of global bans on your group, or return your current settings.
-
-Gbans, also known as global bans, are used by the bot owners to ban spammers across all groups. This helps protect \
-you and your groups by removing spam flooders as quickly as possible. They can be disabled for you group by calling \
-/gbanstat
+ - /antispam <on/off/yes/no>: Will disable the effect of global bans on your group, or return your current settings.Antispam,  are used by the bot owners to ban spammers across all groups. This helps protectyou and your groups by removing spam flooders as quickly as possible. They can be disabled for you group by calling \
+/antispam
 Note: You can appeal gbans or ask gbans at @fateunion
  - /casver: Returns the API version that the bot is currently running
  - /cascheck: Checks you or another user for CAS BAN
@@ -422,17 +419,17 @@ GBAN_HANDLER = CommandHandler("gban", gban, pass_args=True)
 UNGBAN_HANDLER = CommandHandler("ungban", ungban, pass_args=True)
 GBAN_LIST = CommandHandler("gbanlist", gbanlist)
 
-GBAN_STATUS = CommandHandler("gbanstat", gbanstat, pass_args=True, filters=Filters.group)
+ANTISPAM = CommandHandler("antispam", antispam, pass_args=True, filters=Filters.group)
 
 GBAN_ENFORCER = MessageHandler(Filters.all & Filters.group, enforce_gban)
 
 dispatcher.add_handler(GBAN_HANDLER)
 dispatcher.add_handler(UNGBAN_HANDLER)
 dispatcher.add_handler(GBAN_LIST)
-dispatcher.add_handler(GBAN_STATUS)
+dispatcher.add_handler(ANTISPAM)
 
 __mod_name__ = "Anti Spam"
-__handlers__ = [GBAN_HANDLER, UNGBAN_HANDLER, GBAN_LIST, GBAN_STATUS]
+__handlers__ = [GBAN_HANDLER, UNGBAN_HANDLER, GBAN_LIST, ANTISPAM]
 
 if STRICT_GBAN:  # enforce GBANS if this is set
     dispatcher.add_handler(GBAN_ENFORCER, GBAN_ENFORCE_GROUP)
