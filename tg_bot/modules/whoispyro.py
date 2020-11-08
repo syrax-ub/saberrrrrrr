@@ -3,17 +3,14 @@ Syntax: .whois"""
 import os
 import time
 from datetime import datetime
-from pyrogram import filters
-from pyrogram.types import User, Message
-from pyrogram.raw import functions
-from pyrogram.errors import PeerIdInvalid
+from pyrogram import Client, filters
+from pyrogram.errors import UserNotParticipant
+from pyrobot import COMMAND_HAND_LER
 from tg_bot import pbot
 from tg_bot.modules.helper_funcs.extraction import extract_user
 
 
-@pbot.on_message(
-    filters.command(whois)
-)
+@pbot.on_message(filters.command('whois')
 async def who_is(client, message):
     """ extract user information """
     status_message = await message.reply_text(
