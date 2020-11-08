@@ -14,7 +14,7 @@ async def who_is(client, message):
     """ extract user information """
     status_message = await message.reply_text(
     from_user = None
-    from_user_id _ = extract_user(message)
+    from_user_id = extract_user(message)
     try:
         user_id = from_user_id
         if not str(user_id).startswith("@"):
