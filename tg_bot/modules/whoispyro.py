@@ -13,8 +13,6 @@ from tg_bot.modules.helper_funcs.extraction import extract_user
 async def who_is(client, message):
     """ extract user information """
     status_message = await message.reply_text(
-        "🤔😳😳🙄"
-    )
     from_user = None
     from_user_id, _ = extract_user(message)
     try:
