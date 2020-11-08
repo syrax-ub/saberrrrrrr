@@ -18,11 +18,11 @@ async def dice(c: Client, m: Message):
     await dicen.reply_text(f"The dice stopped at the number {dicen.dice.value}", quote=True)
 
 @pbot.on_message(
-    filters.command(["throw", "dart"], COMMAND_HAND_LER) &
+    filters.command(["dart"], COMMAND_HAND_LER) &
     f_onw_fliter
 )
 async def throw_dart(client, message):
-    """ /throw an @AnimatedDart """
+    """ /dart an @AnimatedDart """
     rep_mesg_id = message.message_id
     if message.reply_to_message:
         rep_mesg_id = message.reply_to_message.message_id
