@@ -144,6 +144,8 @@ __help__ = """
  Games:-
  - /truth: for random truth
  - /dare: for random dare
+ - /dice: dice game
+ - /football: football game
  ANIMATION :-
  -/love ❣️
 - /hack 👨‍💻
@@ -154,7 +156,7 @@ __help__ = """
 - /blockanimation 🟥
 - /kill ⚰
 """
-DICE_HANDLER = DisableAbleCommandHandler("dice", dice)
+
 ABUSE_HANDLER = DisableAbleCommandHandler(["abuse", "abuse"], abuse, admin_ok=True)
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
 SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
@@ -166,7 +168,6 @@ RLG_HANDLER = DisableAbleCommandHandler("rlg", rlg)
 DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 
-dispatcher.add_handler(DICE_HANDLER)
 dispatcher.add_handler(ABUSE_HANDLER)
 dispatcher.add_handler(RUNS_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
