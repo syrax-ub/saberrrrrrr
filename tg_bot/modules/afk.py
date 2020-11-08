@@ -116,11 +116,11 @@ def check_afk(bot, update, user_id, fst_name, userc_id):
                 return
         res = "{} is AFK!".format(fst_name)
     
-        else:
-            if int(userc_id) == int(user_id):
-                return
-            res = "{} is AFK!\nReason:\n{}".format(fst_name, reason)
-            update.effective_message.reply_text(res)
+    else:
+         if int(userc_id) == int(user_id):
+              return
+          res = "{} is AFK!\nReason:\n{}".format(fst_name, reason)
+          update.effective_message.reply_text(res)
 
 
 
