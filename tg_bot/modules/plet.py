@@ -57,7 +57,7 @@ def plet(bot: Bot, update: Update):
 
 
 __help__ = """
-   /Plet :- text get funny memify
+   /Plet :- text get funny emojify
 """
 __mod_name__ = "plet"
 
