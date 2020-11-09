@@ -8,7 +8,7 @@ async def user_is_ban_protected(user_id: int, message):
     if message.is_private or user_id in (WHITELIST_USERS + SUDO_USERS):
         return True
 
-    async for user in tbot.iter_participants(message.chat_id,
+    async for user in oko.iter_participants(message.chat_id,
                                              filter=ChannelParticipantsAdmins):
         if user_id == user.id:
             status = True
@@ -21,7 +21,7 @@ async def user_is_admin(user_id: int, message):
     if message.is_private:
         return True
 
-    async for user in tbot.iter_participants(message.chat_id,
+    async for user in oko.iter_participants(message.chat_id,
                                              filter=ChannelParticipantsAdmins):
         if user_id == user.id or user_id in SUDO_USERS:
             status = True
@@ -31,7 +31,7 @@ async def user_is_admin(user_id: int, message):
 
 async def is_user_admin(user_id: int, chat_id):
     status = False
-    async for user in tbot.iter_participants(chat_id,
+    async for user in oko.iter_participants(chat_id,
                                              filter=ChannelParticipantsAdmins):
         if user_id == user.id or user_id in SUDO_USERS:
             status = True
@@ -39,12 +39,12 @@ async def is_user_admin(user_id: int, chat_id):
     return status
 
 
-async def haruka_is_admin(chat_id: int):
+async def saber_is_admin(chat_id: int):
     status = False
-    haruka = await tbot.get_me()
+    haruka = await oko.get_me()
     async for user in tbot.iter_participants(chat_id,
                                              filter=ChannelParticipantsAdmins):
-        if haruka.id == user.id:
+        if saber.id == user.id:
             status = True
             break
     return status
@@ -52,7 +52,7 @@ async def haruka_is_admin(chat_id: int):
 
 async def is_user_in_chat(chat_id: int, user_id: int):
     status = False
-    async for user in tbot.iter_participants(chat_id):
+    async for user in oko.iter_participants(chat_id):
         if user_id == user.id:
             status = True
             break
