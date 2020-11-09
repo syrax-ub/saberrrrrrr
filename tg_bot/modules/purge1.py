@@ -1,4 +1,4 @@
-from tg_bot.modules.helper_funcs.telethn.chatstatus import (
+from tg_bot.modules.helper_funcs.telethon.chat_status import (
     can_delete_messages, user_is_admin)
 from tg_bot import oko
 import time
