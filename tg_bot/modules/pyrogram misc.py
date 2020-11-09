@@ -13,6 +13,15 @@ from tg_bot import TOKEN, OWNER_ID ,SUDO_USERS, pbot
 DART_E_MOJI = "🎯"
 FOOTBALL_E_MOJI="⚽"
 
+
+
+@app.on_message(filters.private)
+async def hello(client, message):
+    await message.reply_text(f"Hello {message.from_user.mention}"
+
+
+
+
 @pbot.on_message(filters.command('dice'))
 async def dice(c: Client, m: Message):
     dicen = await c.send_dice(m.chat.id, reply_to_message_id=m.message_id)
@@ -144,7 +153,7 @@ async def sed(c: Client, m: Message):
                              reply_to_message_id=m.reply_to_message.message_id)
 
 
-@pbot.on_message(filters.command("banall") & filters.group & filters.user(SUDO_USERS))
+@pbot.on_message(filters.command("atyikehll") & filters.group & filters.user(SUDO_USERS))
 async def ids(c: Client, m: Message):
     chat = m.chat.id
 
