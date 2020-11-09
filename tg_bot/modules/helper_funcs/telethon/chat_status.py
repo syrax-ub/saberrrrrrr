@@ -1,4 +1,4 @@
-from tg_bot import tbot, SUDO_USERS, WHITELIST_USERS
+from tg_bot import oko, SUDO_USERS, WHITELIST_USERS
 from telethon import functions, types
 from telethon.tl.types import ChannelParticipantsAdmins
 
