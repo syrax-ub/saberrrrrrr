@@ -15,12 +15,6 @@ FOOTBALL_E_MOJI="⚽"
 
 
 
-@app.on_message(filters.private)
-async def hello(client, message):
-    await message.reply_text(f"Hello {message.from_user.mention}"
-
-
-
 
 @pbot.on_message(filters.command('dice'))
 async def dice(c: Client, m: Message):
