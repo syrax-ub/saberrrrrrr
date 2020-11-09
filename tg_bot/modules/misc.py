@@ -443,7 +443,7 @@ __help__ = """
 - /git:{GitHub username} Returns info about a GitHub user or organization
  example syntax: /cash 1 USD INR
 - /imdb <movie or TV series name>: View IMDb results for selected movie or TV series 
- - /time <query> : Gives information about a timezone.
+- /time <query> : Gives information about a timezone.
 Available queries : Country Code/Country Name/Timezone Name
 """
 
