@@ -146,6 +146,7 @@ __help__ = """
  - /dare: for random dare
  - /dice: dice game
  - /football: football game
+ - /dart : dart game
  ANIMATION :-
  -/love ❣️
 - /hack 👨‍💻
