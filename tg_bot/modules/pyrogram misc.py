@@ -94,7 +94,7 @@ async def ids_private(c: Client, m: Message):
                        parse_mode="HTML")
 
 
-@pbot.on_message(filters.command("dinfo") & filters.group))
+@pbot.on_message(filters.command("dinfo") & filters.group)
 async def ids(c: Client, m: Message):
     data = m.reply_to_message or m
     await m.reply_text("<b>Info:</b>\n\n"
