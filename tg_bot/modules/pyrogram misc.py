@@ -19,7 +19,7 @@ FOOTBALL_E_MOJI="⚽"
 
 
 pbot.on_message(filters.command('moon')
-async def dice(c: Client, m: Message)
+async def moon(c: Client, m: Message)
     """moon"""
     rep_mesg_id = message.message_id
     deq = deque(list("🌗🌘🌑🌒🌓🌔🌕🌖")
