@@ -8,13 +8,28 @@ from datetime import datetime
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
+from re import sub
+from collections import deque
+from random import choice, getrandbits, randint
+
 from tg_bot import TOKEN, OWNER_ID ,SUDO_USERS, pbot
 
 DART_E_MOJI = "🎯"
 FOOTBALL_E_MOJI="⚽"
 
 
-
+pbot.on_message(filters.command('moon'))
+async def dice(c: Client, m: Message)
+    """moon"""
+    rep_mesg_id = message.message_id
+    deq = deque(list("🌗🌘🌑🌒🌓🌔🌕🌖"))
+    try:
+        for _ in range(32):
+            await asyncio.sleep(0.1)
+            await message.edit("".join(deq))
+            deq.rotate(1)
+    except Exception:
+        await message.delete()
 
 @pbot.on_message(filters.command('dice'))
 async def dice(c: Client, m: Message):
@@ -37,7 +52,7 @@ async def throw_dart(client, message):
     )
 
 pbot.on_message(filters.command('type'))
-async def typewriter(typew):
+async def type(c: Client, m: Message):
     """ Just a small command to make your keyboard become a typewriter! """
     textx = await typew.get_reply_message()
     message = typew.pattern_match.group(1)
