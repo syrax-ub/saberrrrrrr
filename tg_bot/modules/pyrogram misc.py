@@ -18,20 +18,21 @@ DART_E_MOJI = "🎯"
 FOOTBALL_E_MOJI="⚽"
 
 
-pbot.on_message(filters.command('moon'))
+pbot.on_message(filters.command('moon')
 async def dice(c: Client, m: Message)
     """moon"""
     rep_mesg_id = message.message_id
-    deq = deque(list("🌗🌘🌑🌒🌓🌔🌕🌖"))
+    deq = deque(list("🌗🌘🌑🌒🌓🌔🌕🌖")
     try:
         for _ in range(32):
             await asyncio.sleep(0.1)
             await message.edit("".join(deq))
+
             deq.rotate(1)
     except Exception:
         await message.delete()
 
-@pbot.on_message(filters.command('dice'))
+@pbot.on_message(filters.command('dice')
 async def dice(c: Client, m: Message):
     dicen = await c.send_dice(m.chat.id, reply_to_message_id=m.message_id)
     await dicen.reply_text(f"The dice stopped at the number {dicen.dice.value}", quote=True)
@@ -51,7 +52,7 @@ async def throw_dart(client, message):
         reply_to_message_id=rep_mesg_id
     )
 
-pbot.on_message(filters.command('type'))
+pbot.on_message(filters.command('type')
 async def type(c: Client, m: Message):
     """ Just a small command to make your keyboard become a typewriter! """
     textx = await typew.get_reply_message()
@@ -137,7 +138,7 @@ async def ids(c: Client, m: Message):
                        parse_mode="HTML")
 
 
-@pbot.on_message(filters.command("ping"))
+@pbot.on_message(filters.command("ping")
 async def ping(c: Client, m: Message):
     first = datetime.now()
     sent = await m.reply_text("**Pong!**")
