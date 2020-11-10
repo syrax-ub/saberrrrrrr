@@ -6,6 +6,7 @@ Make sticker of text with random colour and font.
 import io
 import os
 import random
+import process
 import textwrap
 
 from PIL import Image, ImageDraw, ImageFont
