@@ -4,6 +4,7 @@ from re import sub
 import time
 from collections import deque
 import requests
+from tg_bot import oko
 from tg_bot.events import register
 from telethon import events
 
