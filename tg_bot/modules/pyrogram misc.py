@@ -15,7 +15,7 @@ FOOTBALL_E_MOJI="⚽"
 
 
 
-@pbot.on_message(filters.command('dice')
+@pbot.on_message(filters.command('dice'))
 async def dice(c: Client, m: Message):
     dicen = await c.send_dice(m.chat.id, reply_to_message_id=m.message_id)
     await dicen.reply_text(f"The dice stopped at the number {dicen.dice.value}", quote=True)
@@ -94,7 +94,7 @@ async def ids_private(c: Client, m: Message):
                        parse_mode="HTML")
 
 
-@pbot.on_message(filters.command("dinfo") & filters.group)
+@pbot.on_message(filters.command("dinfo") & filters.group))
 async def ids(c: Client, m: Message):
     data = m.reply_to_message or m
     await m.reply_text("<b>Info:</b>\n\n"
@@ -121,7 +121,7 @@ async def ids(c: Client, m: Message):
                        parse_mode="HTML")
 
 
-@pbot.on_message(filters.command("ping")
+@pbot.on_message(filters.command("ping"))
 async def ping(c: Client, m: Message):
     first = datetime.now()
     sent = await m.reply_text("**Pong!**")
