@@ -35,7 +35,7 @@ async def throw_dart(client, message):
         reply_to_message_id=rep_mesg_id
     )
 
-pbot.on_message(filters.command('type')
+pbot.on_message(filters.command('type'))
 async def type(c: Client, m: Message):
     """ Just a small command to make your keyboard become a typewriter! """
     textx = await typew.get_reply_message()
