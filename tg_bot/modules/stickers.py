@@ -14,11 +14,9 @@ from telegram import ParseMode, Update, Bot, Chat, User, MessageEntity, InlineKe
 
 from tg_bot import dispatcher
 from tg_bot.modules.disable import DisableAbleCommandHandler
-from tg_bot.modules.helper_funcs.alternate import typing_action
 
 
 @run_async
-@typing_action
 def kang(bot: Bot, update: Update, args: List[str]) -> str:
     message = update.effective_message  # type: Optional[Message]
     user = update.effective_user  # type: Optional[User]
@@ -421,7 +419,6 @@ def getsticker(bot: Bot, update: Update):
 
 
 @run_async
-@typing_action
 def stickerid(bot: Bot, update: Update):
     msg = update.effective_message
     if msg.reply_to_message and msg.reply_to_message.sticker:
