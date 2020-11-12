@@ -35,7 +35,7 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
-@register(outgoing=True, pattern="^[/!]zombies(?: |$)(.*)", groups_only=True)
+@register(outgoing=True, pattern="^.zombies(?: |$)(.*)", groups_only=True)
 async def rm_deletedacc(show):
     """ For .delusers command, list all the ghost/deleted accounts in a chat. """
     if not show.is_group:
