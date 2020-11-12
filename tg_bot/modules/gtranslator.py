@@ -62,7 +62,7 @@ __help__ = """
 - /tr (language code) as reply to a long message.
 """
 
-TRANSLATE_HANDLER = DisableAbleCommandHandler("tr", totranslate)
+TRANSLATE_HANDLER = DisableAbleCommandHandler("tr", dotranslate)
 
 dispatcher.add_handler(TRANSLATE_HANDLER)
 
