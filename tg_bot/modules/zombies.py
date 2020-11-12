@@ -6,6 +6,7 @@ from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
 from telethon import events
 from tg_bot import oko
+from tg_bot.events import register
 
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
