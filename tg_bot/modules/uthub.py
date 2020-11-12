@@ -19,7 +19,7 @@ from telethon.tl.types import ChannelParticipantsAdmins
 from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
 
 
-@oko.on(events.NewMessage(pattern="^[!/]yt$"))
+@oko.on(events.NewMessage(pattern="^[!/]yt(audio|video)$"))
 async def download_video(v_url):
     
     """ For .ytdl command, download media from YouTube and many other sites. """
