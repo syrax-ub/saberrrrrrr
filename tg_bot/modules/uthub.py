@@ -14,10 +14,12 @@ from youtube_dl.utils import PostProcessingError
 from youtube_dl.utils import UnavailableVideoError
 from youtube_dl.utils import XAttrMetadataError
 from tg_bot.events import register
+from telethon import events
+from telethon.tl.types import ChannelParticipantsAdmins
+from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
 
 
-
-@oko.on(pattern="^/yt(audio|video) (.*)")
+@oko.on(events.NewMessage(pattern="^[!/]yt$"))
 async def download_video(v_url):
     
     """ For .ytdl command, download media from YouTube and many other sites. """
