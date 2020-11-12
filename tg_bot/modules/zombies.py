@@ -13,7 +13,7 @@ from telethon.tl.types import (ChannelParticipantsAdmins, ChatAdminRights,
                                ChatBannedRights, MessageEntityMentionName,
                                MessageMediaPhoto)
 from telethon import events
-from tg_bot import register
+from tg_bot import oko
 
 @oko.on(events.NewMessage(pattern="^[!/]deluser$"))
 async def rm_deletedacc(event):
