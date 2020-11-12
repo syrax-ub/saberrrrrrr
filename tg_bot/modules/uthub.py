@@ -19,7 +19,7 @@ from telethon.tl.types import ChannelParticipantsAdmins
 from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
 
 
-@oko.on(events.NewMessage(pattern="^[!/]yt(audio|video)$"))
+@register(pattern="^/yt(audio|video) (.*)")
 async def download_video(v_url):
     
     """ For .ytdl command, download media from YouTube and many other sites. """
@@ -131,6 +131,7 @@ async def download_video(v_url):
             caption=ytdl_data["title"],
         )
         os.remove(f"{ytdl_data['id']}.mp4")
+
 from tg_bot import CMD_HELP
 global __help__
 global file_helpo
@@ -142,7 +143,7 @@ __help__ = """
  - /yt <text>: perform a youtube search
  - /ytaudio <link> or /ytvideo <link>: Downlods a video or audio from a youtube video to the bots local server
 """
-
+__mod_name__ = "Yt"
 
 CMD_HELP.update({
     file_helpo: [
