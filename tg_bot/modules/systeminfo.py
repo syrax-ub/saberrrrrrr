@@ -34,7 +34,7 @@ def status(bot: Bot, update: Update):
 	chat = update.effective_chat
 	
 	stat = "--- System Status ---\n"
-	stat += "alluka Version: `5.5.2`""\n"
+	stat += "saber Version: `5.5.2`""\n"
 	stat += "Python Version: `"+python_version()+"`\n"
 	stat += "GitHub API Version: `"+str(git.vercheck())+"`\n"
 	#Software Info
