@@ -34,27 +34,28 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
-
-
-@oko.on(events.NewMessage(pattern="^[!/]zombies$"))
+@register(outgoing=True, pattern="^.zombies(?: |$)(.*)", groups_only=True)
 async def rm_deletedacc(show):
-    """ For .zombies command, list all the ghost/deleted/zombie accounts in a chat. """
-
+    """ For .delusers command, list all the ghost/deleted accounts in a chat. """
+    if not show.is_group:
+        await show.edit("I don't think this is a group.")
+        return
     con = show.pattern_match.group(1).lower()
     del_u = 0
-    del_status = "`No deleted accounts found, Group is clean`"
+    del_status = "No deleted accounts found, Group is cleaned as Hell"
 
     if con != "clean":
-        await eor(show, "`Searching for ghost/deleted/zombie accounts...`")
-        async for user in show.client.iter_participants(show.chat_id):
-
+        await show.edit("Searching for zombie accounts...")
+        async for user in show.client.iter_participants(show.chat_id,
+                                                        aggressive=True):
             if user.deleted:
                 del_u += 1
                 await sleep(1)
         if del_u > 0:
-            del_status = f"`Found` **{del_u}** `ghost/deleted/zombie account(s) in this group,\
-            \nclean them by using .zombies clean`"
-        await eor(show, del_status)
+            del_status = f"Found {del_u} deleted account(s) in this group,\
+            \nclean them by using .delusers clean"
+
+        await show.edit(del_status)
         return
 
     # Here laying the sanity check
@@ -64,10 +65,10 @@ async def rm_deletedacc(show):
 
     # Well
     if not admin and not creator:
-        await eor(show, "`I am not an admin here!`")
+        await show.edit("I am not an admin here!")
         return
 
-    await eor(show, "`Deleting deleted accounts...\nOh I can do that?!?!`")
+    await show.edit("Deleting deleted accounts...\nOh I can do that?!?!")
     del_u = 0
     del_a = 0
 
@@ -75,32 +76,30 @@ async def rm_deletedacc(show):
         if user.deleted:
             try:
                 await show.client(
-                    EditBannedRequest(show.chat_id, user.id, BANNED_RIGHTS)
-                )
+                    EditBannedRequest(show.chat_id, user.id, BANNED_RIGHTS))
             except ChatAdminRequiredError:
-                await eor(show, "`I don't have ban rights in this group`")
+                await show.edit("I don't have ban rights in this group")
                 return
             except UserAdminInvalidError:
                 del_u -= 1
                 del_a += 1
-            await show.client(EditBannedRequest(show.chat_id, user.id, UNBAN_RIGHTS))
+            await show.client(
+                EditBannedRequest(show.chat_id, user.id, UNBAN_RIGHTS))
             del_u += 1
 
     if del_u > 0:
-        del_status = f"Cleaned **{del_u}** deleted account(s)"
+        del_status = f"Cleaned {del_u} deleted account(s)"
 
     if del_a > 0:
-        del_status = f"Cleaned **{del_u}** deleted account(s) \
+        del_status = f"Cleaned {del_u} deleted account(s) \
         \n**{del_a}** deleted admin accounts are not removed"
 
-    await eor(show, del_status)
+    await show.edit(del_status)
     await sleep(2)
     await show.delete()
 
-    if Var.PRIVATE_GROUP_ID is not None:
+    if BOTLOG:
         await show.client.send_message(
-            Var.PRIVATE_GROUP_ID,
-            "#CLEANUP\n"
-            f"Cleaned **{del_u}** deleted account(s) !!\
-            \nCHAT: {show.chat.title}(`{show.chat_id}`)",
-        )
+            BOTLOG_CHATID, "#CLEANUP\n"
+            f"Cleaned {del_u} deleted account(s) !!\
+            \nCHAT: {show.chat.title}({show.chat_id})")
