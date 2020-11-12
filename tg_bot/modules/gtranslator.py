@@ -1,6 +1,6 @@
 
 import random
-import emoji
+import emoji import UNICODE_EMOJI
 from typing import Optional, List
 
 from telegram import Message, Update, Bot, ParseMode, Chat
@@ -62,7 +62,7 @@ __help__ = """
 - /tr (language code) as reply to a long message.
 """
 
-TRANSLATE_HANDLER = DisableAbleCommandHandler("tr", dotranslate)
+TRANSLATE_HANDLER = DisableAbleCommandHandler("tr", do_translate)
 
 dispatcher.add_handler(TRANSLATE_HANDLER)
 
