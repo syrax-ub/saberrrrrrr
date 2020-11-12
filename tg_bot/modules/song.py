@@ -14,7 +14,7 @@ from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
 
 
 
-@oko.on(events.NewMessage(pattern="^[!/]song$"))
+@register(pattern="^/song (.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -61,3 +61,4 @@ CMD_HELP.update({
         __help__
     ]
 })
+__mod_name__ = "Song"
