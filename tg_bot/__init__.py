@@ -7,6 +7,9 @@ from telethon import TelegramClient
 from pyrogram import Client, errors
 
 StartTime = time.time()
+CMD_LIST = {}
+CMD_HELP = {}
+LOAD_PLUG = {}
 
 # enable logging
 logging.basicConfig(
