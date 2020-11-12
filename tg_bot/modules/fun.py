@@ -88,10 +88,10 @@ def shrug(bot: Bot, update: Update):
     reply_text(r"¯\_(ツ)_/¯")
 
 @run_async
-def dice(bot: Bot, update: Update):
+def sed(bot: Bot, update: Update):
     msg = update.effective_message
     reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
-    reply_text(r"🎲")
+    reply_text(r"It's sed coz no one cares about anyone")
 
 
 @run_async
@@ -157,7 +157,7 @@ __help__ = """
 - /blockanimation 🟥
 - /kill ⚰
 """
-
+SED_HANDLER = DisableAbleCommandHandler("sed", sed)
 ABUSE_HANDLER = DisableAbleCommandHandler(["abuse", "abuse"], abuse, admin_ok=True)
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
 SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
@@ -169,6 +169,7 @@ RLG_HANDLER = DisableAbleCommandHandler("rlg", rlg)
 DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 
+dispatcher.add_handler(SED_HANDLER)
 dispatcher.add_handler(ABUSE_HANDLER)
 dispatcher.add_handler(RUNS_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
