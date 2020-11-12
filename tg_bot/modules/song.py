@@ -6,17 +6,18 @@ from telethon import types
 from telethon.tl import functions
 from tg_bot import oko
 from tg_bot.events import register
+from telethon import events
+from telethon.tl.types import ChannelParticipantsAdmins
+from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
 
 
 
 
 
-
-@oko.on(pattern="^/song (.*)")
+@oko.on(events.NewMessage(pattern="^[!/]song$"))
 async def _(event):
     if event.fwd_from:
         return
-    
 
     cmd = event.pattern_match.group(1)
     cmnd = f"{cmd}"
