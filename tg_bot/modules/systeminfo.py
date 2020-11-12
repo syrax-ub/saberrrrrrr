@@ -8,9 +8,8 @@ from telegram import Update, Bot, Message, Chat, ParseMode
 from telegram.ext import CommandHandler, run_async
 from tg_bot.modules.helper_funcs.chat_status import whitelist_plus, dev_plus
 import tg_bot.modules.helper_funcs.git_api as git
-from tg_bot import dispatcher
+from tg_bot import dispatcher ,DEV_USERS
 from tg_bot.modules.helper_funcs.filters import CustomFilters
-
 
 def speed_convert(size):
     power = 2 ** 10
@@ -20,6 +19,9 @@ def speed_convert(size):
         size /= power
         zero += 1
     return f"{round(size, 2)} {units[zero]}"
+
+def convert(speed):
+    return round(int(speed)/1048576, 2)
 
 def get_size(bytes, suffix="B"):
     factor = 1024
@@ -75,33 +77,50 @@ def status(bot: Bot, update: Update):
 	bot.send_message(chat.id, reply, parse_mode=ParseMode.MARKDOWN)
 
 
+
+@dev_plus
 @run_async
-def speedtest (bot: Bot, update: Update):
-    chat = update.effective_chat
-    del_msg = bot.send_message(chat.id, "<code>Running speedtest...</code>",
-                               parse_mode=ParseMode.HTML)
-    test = speedtest.Speedtest()
-    test.get_best_server()
-    test.download()
-    test.upload()
-    test.results.share()
-    result = test.results.dict()
-    del_msg.delete()
-    update.effective_message.reply_text("<b>SpeedTest Results</b> \n\n"
-                                        "<b>Download:</b> "
-                                        f"<code>{speed_convert(result['download'])}</code> \n"
-                                        "<b>Upload:</b> "
-                                        f"<code>{speed_convert(result['upload'])}</code> \n"
-                                        "<b>Ping:</b> "
-                                        f"<code>{result['ping']}</code> \n"
-                                        "<b>ISP:</b> "
-                                        f"<code>{result['client']['isp']}</code>",
-                                        parse_mode=ParseMode.HTML)
+def speedtestxyz(bot: Bot, update: Update):
+    buttons = [
+        [InlineKeyboardButton("Image", callback_data="speedtest_image"), InlineKeyboardButton("Text", callback_data="speedtest_text")]
+    ]
+    update.effective_message.reply_text("Select SpeedTest Mode",
+                                        reply_markup=InlineKeyboardMarkup(buttons))
+
+
+@run_async
+def speedtestxyz_callback(bot: Bot, update: Update):
+    query = update.callback_query
+
+    if query.from_user.id in DEV_USERS:
+        msg = update.effective_message.edit_text('Runing a speedtest....') 
+        speed = speedtest.Speedtest()
+        speed.get_best_server()
+        speed.download()
+        speed.upload()
+        replymsg = 'SpeedTest Results:'
+
+        if query.data == 'speedtest_image':
+            speedtest_image = speed.results.share()
+            update.effective_message.reply_photo(photo=speedtest_image, caption=replymsg)
+            msg.delete()
+
+        elif query.data == 'speedtest_text':
+            result = speed.results.dict()
+            replymsg += f"\nDownload: `{convert(result['download'])}Mb/s`\nUpload: `{convert(result['upload'])}Mb/s`\nPing: `{result['ping']}`"
+            update.effective_message.edit_text(replymsg, parse_mode=ParseMode.MARKDOWN)
+    else:
+        query.answer("You are required to join fate union to use this command.")
+
 
 
 
 STATUS_HANDLER = CommandHandler("system", status, filters=CustomFilters.sudo_filter)
-SPEED_HANDLER = CommandHandler("speed", speedtest, filters=CustomFilters.sudo_filter)
+SPEED_TEST_HANDLER = DisableAbleCommandHandler("speedtest", speedtestxyz)
+SPEED_TEST_CALLBACKHANDLER = CallbackQueryHandler(speedtestxyz_callback, pattern='speedtest_.*')
+
 
 dispatcher.add_handler(STATUS_HANDLER)
-dispatcher.add_handler(SPEED_HANDLER)
+dispatcher.add_handler(SPEED_TEST_HANDLER)
+dispatcher.add_handler(SPEED_TEST_CALLBACKHANDLER)
+
