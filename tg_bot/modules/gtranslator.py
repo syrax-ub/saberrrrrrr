@@ -1,6 +1,6 @@
 
 import random
-import emoji import UNICODE_EMOJI
+from emoji import UNICODE_EMOJI
 from typing import Optional, List
 
 from telegram import Message, Update, Bot, ParseMode, Chat
