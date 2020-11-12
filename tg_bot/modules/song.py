@@ -12,7 +12,7 @@ from tg_bot.events import register
 
 
 
-@register(pattern="^/song (.*)")
+@oko.on(pattern="^/song (.*)")
 async def _(event):
     if event.fwd_from:
         return
