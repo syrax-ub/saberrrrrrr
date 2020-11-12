@@ -101,7 +101,7 @@ def speedtest (bot: Bot, update: Update):
 
 
 STATUS_HANDLER = CommandHandler("system", status, filters=CustomFilters.sudo_filter)
-SPEED_HANDLER = CommandHandler("speed", speedtst, filters=CustomFilters.sudo_filter)
+SPEED_HANDLER = CommandHandler("speed", speedtest, filters=CustomFilters.sudo_filter)
 
 dispatcher.add_handler(STATUS_HANDLER)
 dispatcher.add_handler(SPEED_HANDLER)
