@@ -58,8 +58,16 @@ def do_translate(bot: Bot, update: Update, args: List[str]):
                                                        translated_text),
                    parse_mode=ParseMode.MARKDOWN)
 
+__help__ = """
+- /tr (language code) as reply to a long message.
+"""
 
-__help__ = 
+TRANSLATE_HANDLER = DisableAbleCommandHandler("tr", totranslate)
 
-dispatcher.add_handler(
-DisableAbleCommandHandler("tr", do_translate, pass_args=True))
+dispatcher.add_handler(TRANSLATE_HANDLER)
+
+__mod_name__ = "Translator"
+__command_list__ = ["tr"]
+__handlers__ = [TRANSLATE_HANDLER]
+
+
