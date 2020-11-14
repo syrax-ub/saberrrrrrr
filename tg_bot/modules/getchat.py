@@ -10,7 +10,7 @@ from tg_bot import oko
 from telethon import events
 
 
-@oko.on(events.NewMessage(pattern=^[!/]chatinfo$"(?: |$)(.*)", outgoing=True))
+@oko.on(events.NewMessage(pattern="^[!/]chatinfo")
 async def info(event):
     await event.edit("`Analysing the chat...`")
     chat = await get_chatinfo(event)
