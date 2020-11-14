@@ -9,7 +9,7 @@ from telegram.ext import run_async
 
 @run_async
 def animeqoute(bot: Bot, update: Update):
-    update.effective_message.reply_photo(random.choice(truth_and_dare_string.animeqoute))
+    update.effective_message.reply_photo(random.choice(truth_and_dare_string.ANIMEQOUTE))
 
 
 ANIMEQOUTE_HANDLER = DisableAbleCommandHandler("animequote", animeqoute)
