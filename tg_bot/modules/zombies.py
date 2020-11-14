@@ -3,7 +3,7 @@ from tg_bot import oko, SUDO_USERS
 from telethon import events, Button
 from asyncio import sleep
 from os import remove
-from tg_bot.modules.helper_funcs.telethon.chatstatus import (
+from tg_bot.modules.helper_funcs.telethon.chat_status import (
     can_delete_messages, user_is_admin, saber_is_admin, can_ban_users)
 
 from telethon.errors import (BadRequestError, ChatAdminRequiredError,
