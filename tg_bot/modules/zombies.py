@@ -59,7 +59,7 @@ async def is_administrator(user_id: int, message):
             break
     return admin
 
-@telethn.on(events.CallbackQuery(data=b'rmdel'))
+@oko.on(events.CallbackQuery(data=b'rmdel'))
 async def _(event):
     x = await event.client.get_entity(event.chat_id)
     title = x.title
