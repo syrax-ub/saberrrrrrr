@@ -190,8 +190,3 @@ async def fetch_info(chat, event):
         caption += f"Description: \n<code>{description}</code>\n"
     return caption
 
-"""
-"chatinfo":
-".chatinfo [optional: <reply/tag/chat id/invite link>]\
-\nUsage: Gets info of a chat. Some info might be limited due to missing permissions."})
-"""
