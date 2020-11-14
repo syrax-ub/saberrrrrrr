@@ -1,3 +1,4 @@
+from tg_bot.modules.helper_funcs.telethon.chat_status import (user_is_admin)
 from datetime import datetime
 from emoji import emojize
 from math import sqrt
