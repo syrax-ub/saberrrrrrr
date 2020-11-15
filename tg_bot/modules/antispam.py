@@ -420,6 +420,7 @@ __help__ = """
 Antispam,  are used by the bot owners to ban spammers across all groups. This helps protectyou and your groups by removing spam flooders as quickly as possible. They can be disabled for you group by calling \
 /antispam
 Note: You can appeal gbans or ask gbans at @fateunion
+Combot antispam :-
  - /casver: Returns the API version that the bot is currently running
  - /cascheck: Checks you or another user for CAS BAN
 *Admin only:*
@@ -431,6 +432,10 @@ Note: You can appeal gbans or ask gbans at @fateunion
  - /kicktime: gets the auto-kick time setting
  - /setkicktime: sets new auto-kick time value (between 30 and 900 seconds)
  -/cas : what is cas
+
+Saber also integrates @Spamwatch API into gbans to remove Spammers as much as possible from your chatroom!
+*What is SpamWatch?*
+SpamWatch maintains a large constantly updated ban-list of spambots, trolls, bitcoin spammers and unsavoury characters[.](https://telegra.ph/file/f584b643c6f4be0b1de53.jpg)
 """
 
 GBAN_HANDLER = CommandHandler("gban", gban, pass_args=True)
