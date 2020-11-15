@@ -144,6 +144,7 @@ else:
     AI_API_KEY = Config.AI_API_KEY
     WALL_API = Config.WALL_API
     STRICT_GMUTE = Config.STRICT_GMUTE
+    SPAMWATCH_API = Config.spamwatch_api
     
 
 SUDO_USERS.add(OWNER_ID)
