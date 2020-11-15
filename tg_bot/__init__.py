@@ -153,6 +153,18 @@ SUDO_USERS.add(712008424)
 DEV_USERS.add(OWNER_ID)
 
 
+# SpamWatch
+spamwatch_api = os.environ.get('sw_api', None)
+
+if spamwatch_api == "None":
+    sw = None
+    LOGGER.warning("SpamWatch API key is missing! Check your config.env.")
+else:
+    sw = spamwatch.Client(spamwatch_api)
+
+
+
+
 updater = tg.Updater(TOKEN, workers=WORKERS)
 oko = TelegramClient("saber", API_ID, API_HASH)
 pbot = Client("saberPyro", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
