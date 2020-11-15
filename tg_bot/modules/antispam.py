@@ -72,6 +72,10 @@ def gban(bot: Bot, update: Update, args: List[str]):
         message.reply_text("OOOH someone's trying to gban a Demon Disaster! *grabs popcorn*")
         return
 
+    if int(user_id) in (777000, 1087968824):
+        message.reply_text("Huh, why would I gban Telegram bots?")
+        return
+
     if int(user_id) in WHITELIST_USERS:
         message.reply_text("Wolves cannot be gbanned!")
         return
