@@ -25,11 +25,13 @@ CURRENT_WARNING_FILTER_STRING = "<b>Current warning filters in this chat:</b>\n"
 
 
 # Not async
-def warn(user: User, chat: Chat, reason: str, message: Message, warner: User = None) -> str:
+def warn(user: User, chat: Chat, reason: str, message: Message, warner: User = None) -> str:    
     if is_user_admin(chat, user.id):
-        # message.reply_text("Damn admins, They are too far to be One Punched!")
-        return
-
+        message.reply_text("Damn admins, can't even be warned!")
+        return ""
+    if not user.id or int(user.id) == 777000 or int(user.id) == 1087968824:
+        message.reply_text("This is the Telegram Service Bot or the Group Anonymous Bot. Kinda pointless to warn it, don't you think?")
+        return ""
     if user.id in TIGER_USERS:
         if warner:
             message.reply_text("shadow cant be warned.")
