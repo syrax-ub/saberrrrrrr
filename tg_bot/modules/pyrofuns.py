@@ -40,7 +40,7 @@ async def throw_dart(client, message):
 @pbot.on_message(
     filters.command("typewriter")
 )
-async def type_(client: Message):
+async def type_(client: message):
     text = message.input_str
     if not text:
         await message.err("input not found")
