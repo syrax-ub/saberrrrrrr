@@ -2,11 +2,14 @@
 import html
 import regex
 import aiohttp
+import time
+import random
 
 from datetime import datetime
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
+from pyrogram.errors.exceptions import FloodWait
 
 from tg_bot import TOKEN, OWNER_ID ,SUDO_USERS, pbot
 
@@ -33,32 +36,33 @@ async def throw_dart(client, message):
         emoji=DART_E_MOJI,
         disable_notification=True,
         reply_to_message_id=rep_mesg_id
+
+@pbot.on_message(
+    filters.command("typewriter")
+)
+async def type_(client: Message):
+    text = message.input_str
+    if not text:
+        await message.err("input not found")
+        return
+    s_time = 0.1
+    typing_symbol = '|'
+    old_text = ''
+    await message.edit(typing_symbol)
+    time.sleep(s_time)
+    for character in text:
+        s_t = s_time / random.randint(1, 100)
+        old_text += character
+        typing_text = old_text + typing_symbol
+        try:
+            await message.try_to_edit(typing_text, sudo=False)
+            time.sleep(s_t)
+            await message.try_to_edit(old_text, sudo=False)
+            time.sleep(s_t)
+        except FloodWait as x_e:
+            time.sleep(x_e.x)
     )
 
-pbot.on_message(filters.command('type'))
-async def type(c: Client, m: Message):
-    """ Just a small command to make your keyboard become a typewriter! """
-    textx = await typew.get_reply_message()
-    message = typew.pattern_match.group(1)
-    if message:
-        pass
-    elif textx:
-        message = textx.text
-    else:
-        await typew.edit("`Give a text to type!`")
-        return
-    sleep_time = 0.03
-    typing_symbol = "|"
-    old_text = ""
-    await typew.edit(typing_symbol)
-    await sleep(sleep_time)
-    for character in message:
-        old_text = old_text + "" + character
-        typing_text = old_text + "" + typing_symbol
-        await typew.edit(typing_text)
-        await sleep(sleep_time)
-        await typew.edit(old_text)
-        await sleep(sleep_time)
 
 @pbot.on_message(
     filters.command("football")
