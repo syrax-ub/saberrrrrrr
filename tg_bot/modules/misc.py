@@ -189,7 +189,7 @@ def info(bot: Bot, update: Update, args: List[str]):
           disable_web_page_preview=True)
 
     except IndexError:
-        message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview
+        message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview)
 
 @run_async
 @user_admin
