@@ -72,6 +72,10 @@ def gban(bot: Bot, update: Update, args: List[str]):
         message.reply_text("OOOH someone's trying to gban a Demon Disaster! *grabs popcorn*")
         return
 
+    if int(user_id) in (777000, 1087968824):
+        message.reply_text("Huh, why would I gban Telegram bots?")
+        return
+
     if int(user_id) in WHITELIST_USERS:
         message.reply_text("Wolves cannot be gbanned!")
         return
@@ -318,7 +322,6 @@ def gbanlist(bot: Bot, update: Update):
 
 
 def check_and_ban(update, user_id, should_message=True):
-    
     if sql.is_user_gbanned(user_id):
         update.effective_chat.kick_member(user_id)
         if should_message:
@@ -375,6 +378,9 @@ def __stats__():
 
 
 def __user_info__(user_id):
+    if user_id in (777000, 1087968824):
+        return ""
+
     is_gbanned = sql.is_user_gbanned(user_id)
 
     text = "Gbanned: <b>{}</b>"
