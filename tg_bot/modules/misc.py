@@ -161,9 +161,6 @@ def info(bot: Bot, update: Update, args: List[str]):
         text += "\n The Disaster level of this person is 'Human'."
         disaster_level_present = True
 
-    if disaster_level_present:
-        text += ' [<a href="https://t.me/fateunionupdates/33">?</a>]'.format( bot.username)
-
     text +="\n"
     text += "\nCAS banned: "
     result = cas.banchecker(user.id)
@@ -180,12 +177,19 @@ def info(bot: Bot, update: Update, args: List[str]):
         if mod_info:
             text += "\n" + mod_info
         
+    try:
+        profile = bot.get_user_profile_photos(user.id).photos[0][-1]
+        _file = bot.get_file(profile["file_id"])
+        _file.download(f"{user.id}.png")
 
+        message.reply_document(
+         document=open(f"{user.id}.png", "rb"),
+         caption=(text),
+          parse_mode=ParseMode.HTML,
+          disable_web_page_preview=True)
 
-  
-
-    update.effective_message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
-
+    except IndexError:
+        message.reply_text(text, parse_mode=ParseMode.HTML, disable_web_page_preview
 
 @run_async
 @user_admin
@@ -447,6 +451,7 @@ __help__ = """
 Available queries : Country Code/Country Name/Timezone Name
 """
 
+INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True)
 GIFID_HANDLER = DisableAbleCommandHandler("gifid", gifid)
 ECHO_HANDLER = DisableAbleCommandHandler("echo", echo, filters=Filters.group)
@@ -468,6 +473,7 @@ dispatcher.add_handler(SAFEMODE_HANDLER)
 dispatcher.add_handler(MAGISK_HANDLER)
 dispatcher.add_handler(TWRP_HANDLER)
 dispatcher.add_handler(GETFW_HANDLER)
+dispatcher.add_handler(INFO_HANDLER)
 dispatcher.add_handler(CHECKFW_HANDLER)
 
 
