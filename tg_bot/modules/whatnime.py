@@ -39,7 +39,7 @@ def calculate_eta(current, total, start_time):
     return ', '.join(thing)
 
 session = aiohttp.ClientSession()
-@pbot.on_message(~filters.me & filters.command('wa', prefixes='/'))
+@pbot.on_message(~filters.me & filters.command('wa', prefixes='/')
 async def whatanime(client, message):
     media = message.photo or message.animation or message.video or message.document
     if not media:
