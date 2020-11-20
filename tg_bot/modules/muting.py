@@ -188,21 +188,61 @@ def temp_mute(bot: Bot, update: Update, args: List[str]) -> str:
 
     return ""
 
+@run_async
+@bot_admin
+@user_admin
+@loggable
+def smute(bot: Bot, update: Update, args: List[str]) -> str:
+    chat = update.effective_chat  # type: Optional[Chat]
+    user = update.effective_user  # type: Optional[User]
+    message = update.effective_message  # type: Optional[Message]
+    
+    update.effective_message.delete()
+    user_id, reason = extract_user_and_text(message, args)
+    if not user_id:
+        return ""
+
+    if user_id == bot.id:
+        message.reply_text("Really?! You're not supposed silent mute me!")
+        return ""
+
+    member = chat.get_member(int(user_id))
+
+    if member:
+        if is_user_admin(chat, user_id, member=member):
+           return ""
+
+        elif member.can_send_messages is None or member.can_send_messages:
+            bot.restrict_chat_member(chat.id, user_id, can_send_messages=False)
+            log = "<b>{}:</b>" \
+                   "\n#SILENT_MUTE" \
+                   "\n<b>• Admin:</b> {}" \
+                   "\n<b>• User:</b> {}" \
+                   "\n<b>• ID:</b> <code>{}</code>".format(html.escape(chat.title),
+                                              mention_html(user.id, user.first_name),
+                                              mention_html(member.user.id, member.user.first_name), user_id)
+            if reason:
+               log += "\n<b>• Reason:</b> {}".format(reason)
+            return log
+
+    return ""
 
 __help__ = """
 *Admin only:*
  - /mute <userhandle>: silences a user. Can also be used as a reply, muting the replied to user.
  - /tmute <userhandle> x(m/h/d): mutes a user for x time. (via handle, or reply). m = minutes, h = hours, d = days.
  - /unmute <userhandle>: unmutes a user. Can also be used as a reply, muting the replied to user.
+ - /smute <userhandle> :  this mutes user silently and deletes command.
 """
-
+SMUTE_HANDLER = CommandHandler("smute", smute, pass_args=True)
 MUTE_HANDLER = CommandHandler("mute", mute, pass_args=True)
 UNMUTE_HANDLER = CommandHandler("unmute", unmute, pass_args=True)
 TEMPMUTE_HANDLER = CommandHandler(["tmute", "tempmute"], temp_mute, pass_args=True)
 
+dispatcher.add_handler(SMUTE_HANDLER)
 dispatcher.add_handler(MUTE_HANDLER)
 dispatcher.add_handler(UNMUTE_HANDLER)
 dispatcher.add_handler(TEMPMUTE_HANDLER)
 
 __mod_name__ = "Mutes"
-__handlers__ = [MUTE_HANDLER, UNMUTE_HANDLER, TEMPMUTE_HANDLER]
+__handlers__ = [MUTE_HANDLER, UNMUTE_HANDLER, TEMPMUTE_HANDLER, SMUTE_HANDLER]
