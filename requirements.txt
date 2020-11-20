@@ -29,4 +29,8 @@ telethon==1.16.4
 fontTools
 pyrogram
 tgcrypto
-telegraph
+pymoe
+ffmpeg
+psycopg2-binary
+telegraph==1.4.1
+requests==2.24.0
