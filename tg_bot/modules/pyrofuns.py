@@ -38,8 +38,7 @@ async def throw_dart(client, message):
         reply_to_message_id=rep_mesg_id
 
 @pbot.on_message(
-    filters.command("typewriter")
-)
+    filters.command("typewriter"))
 async def type(client: message):
     text = message.input_str
     if not text:
