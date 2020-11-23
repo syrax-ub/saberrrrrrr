@@ -1,4 +1,4 @@
-Module by @kigyorobot
+#Module by @kigyorobot
 import aiohttp
 from datetime import datetime
 from asyncio import sleep
