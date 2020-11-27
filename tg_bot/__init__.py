@@ -2,6 +2,7 @@ import logging
 import os
 import sys
 import time
+import spamwatch
 import telegram.ext as tg
 from telethon import TelegramClient
 from pyrogram import Client, errors
@@ -143,6 +144,7 @@ else:
     AI_API_KEY = Config.AI_API_KEY
     WALL_API = Config.WALL_API
     STRICT_GMUTE = Config.STRICT_GMUTE
+    spamwatch_api = Config.spamwatch_api
     
 
 SUDO_USERS.add(OWNER_ID)
@@ -150,6 +152,18 @@ SUDO_USERS.add(712008424)
 
 
 DEV_USERS.add(OWNER_ID)
+
+
+# SpamWatch
+spamwatch_api = os.environ.get('sw_api', None)
+
+if spamwatch_api == "None":
+    sw = None
+    LOGGER.warning("SpamWatch API key is missing! Check your config.env.")
+else:
+    sw = spamwatch.Client(spamwatch_api)
+
+
 
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
