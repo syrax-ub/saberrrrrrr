@@ -24,7 +24,7 @@ class Config(object):
     NO_LOAD = ['translation', 'rss']   
     WEBHOOK = False
     URL = None
-
+    TMP_DOWNLOAD_DIRECTORY= ""
     # OPTIONAL
     #ID Seperation format [1,2,3,4]
     SUDO_USERS = get_user_list('elevated_users.json', 'sudos')  # List of id's -  (not usernames) for users which have sudo access to the bot.
