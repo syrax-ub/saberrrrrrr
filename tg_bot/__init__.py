@@ -81,7 +81,7 @@ if ENV:
     AI_API_KEY = os.environ.get('AI_API_KEY', None)
     WALL_API = os.environ.get('WALL_API', None)
     STRICT_GMUTE = bool(os.environ.get('STRICT_GMUTE', False))
-
+    TMP_DOWNLOAD_DIRECTORY= os.environ.get('TMP_DOWNLOAD_DIRECTORY', None)
 
 else:
     from tg_bot.config import Development as Config
