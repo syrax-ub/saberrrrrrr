@@ -1,6 +1,7 @@
 future
 emoji
 beautifulsoup4
+redis
 nekos.py
 requests
 sqlalchemy
