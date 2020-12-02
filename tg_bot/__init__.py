@@ -4,6 +4,7 @@ import sys
 import time
 import telegram.ext as tg
 from telethon import TelegramClient
+from redis import StrictRedis
 from pyrogram import Client, errors
 
 StartTime = time.time()
