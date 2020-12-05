@@ -559,7 +559,7 @@ __help__ = """
 Get information about anime, manga or characters from [AniList](anilist.co).
 
 *Available commands:*
-
+ -/whatanime :- reply to anime gif or image's to search it source anime
  -/anime <anime>`*:* returns information about the anime.
  -/character <character>`*:* returns information about the character.
  -/manga <manga>`*:* returns information about the manga.
