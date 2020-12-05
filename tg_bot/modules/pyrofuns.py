@@ -1,8 +1,8 @@
-
-
+import os
 import html
 import regex
 import aiohttp
+from telegraph import upload_file
 
 from datetime import datetime
 
@@ -14,7 +14,9 @@ from tg_bot import TOKEN, OWNER_ID ,SUDO_USERS, pbot
 DART_E_MOJI = "🎯"
 FOOTBALL_E_MOJI="⚽"
 
-
+@pbot.on_message(filters.command('basket'))
+async def basket(c: Client, m: Message):
+    await c.send_dice(m.chat.id, reply_to_message_id=m.message_id, emoji="🏀")
 
 @pbot.on_message(filters.command('dice'))
 async def dice(c: Client, m: Message):
@@ -170,3 +172,61 @@ async def sed(c: Client, m: Message):
         await c.send_message(m.chat.id, f'<pre>{html.escape(res)}</pre>',
                              reply_to_message_id=m.reply_to_message.message_id)
 
+
+
+@pbot.on_message(filters.command("id") & filters.private)
+async def ids_private(c: Client, m: Message):
+    await m.reply_text("<b>id:</b>\n\n"
+                       "<b>User ID:</b> <code>{user_id}</code>\n"
+                       "<b>Chat ID:</b> <code>{chat_id}</code>\n"                       
+                       "<b>Chat type:</b> {chat_type}".format(                          
+                           user_id=m.from_user.id,
+                           chat_id=m.chat.id,
+                           chat_type=m.chat.type
+                       ),
+                       parse_mode="HTML")
+                    
+                   
+
+@pbot.on_message(filters.command("id") & filters.group)
+async def ids(c: Client, m: Message):
+    data = m.reply_to_message or m
+    await m.reply_text("<b>id:</b>\n\n"
+                       "<b>Username:</b> @{username}\n"
+                       "<b>User ID:</b> <code>{user_id}</code>\n"
+                       "<b>Chat name:</b> <code>{chat_title}</code>\n"
+                       "<b>Chat ID:</b> <code>{chat_id}</code>\n"
+                       "<b>Chat type:</b> {chat_type}".format(
+                           username=data.from_user.username,
+                           user_id=data.from_user.id,
+                           chat_title=m.chat.title,
+                           chat_id=m.chat.id,
+                           chat_type=m.chat.type
+                       ),
+                       parse_mode="HTML")
+
+@pbot.on_message(filters.command("telegraph") & filters.group)
+async def telegraph(client, message):
+    replied = message.reply_to_message
+    if not replied:
+        await sent(message, text="reply to a supported media file")
+        return
+    if not ((replied.photo and replied.photo.file_size <= 5242880)
+            or (replied.animation and replied.animation.file_size <= 5242880)
+            or (replied.video and replied.video.file_name.endswith('.mp4')
+                and replied.video.file_size <= 5242880)
+            or (replied.document
+                and replied.document.file_name.endswith(
+                    ('.jpg', '.jpeg', '.png', '.gif', '.mp4'))
+                and replied.document.file_size <= 5242880)):
+        await sent(message, text="not supported!")
+        return
+    download_location = await client.download_media(message=message.reply_to_message,file_name='root/nana/')
+    try:
+        response = upload_file(download_location)
+    except Exception as document:
+        await sent(message, text=document)
+    else:
+        await sent(message, text=f"**Document passed to: [Telegra.ph](https://telegra.ph{response[0]})**")
+    finally:
+        os.remove(download_location)
