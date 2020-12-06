@@ -1,5 +1,7 @@
 future
 emoji
+youtube_dl
+bs4
 beautifulsoup4
 redis
 nekos.py
