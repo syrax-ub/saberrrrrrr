@@ -157,3 +157,8 @@ async def download_video(v_url):
                 progress(d, t, v_url, c_time, "Uploading..",
                          f"{rip_data['title']}.mp4")))
         os.remove(f"{rip_data['id']}.mp4")
+__help__ = """
+  - /song <name of song > :- get song in High quality uploaded to u
+  - /video <link/songname >: download video songs from youtube
+"""
+__mod_name__ = "song"
