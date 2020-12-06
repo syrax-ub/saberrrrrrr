@@ -35,3 +35,5 @@ fontTools
 pyrogram
 tgcrypto
 telegraph
+pySmartDL
+validators
