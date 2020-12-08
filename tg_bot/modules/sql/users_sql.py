@@ -151,6 +151,13 @@ def num_users():
     finally:
         SESSION.close()
 
+def get_user_com_chats(user_id):
+    try:
+        chat_members = SESSION.query(ChatMembers).filter(ChatMembers.user == int(user_id)).all()
+        return [i.chat for i in chat_members]
+    finally:
+        SESSION.close()
+
 
 def migrate_chat(old_chat_id, new_chat_id):
     with INSERTION_LOCK:
