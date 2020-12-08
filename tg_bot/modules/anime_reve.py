@@ -14,7 +14,7 @@ from datetime import timedelta
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from hitsuki import pbot
+from tg_bot import pbot
 
 session = aiohttp.ClientSession()
 progress_callback_data = {}
