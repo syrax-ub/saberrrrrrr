@@ -72,6 +72,10 @@ def gban(bot: Bot, update: Update, args: List[str]):
         message.reply_text("OOOH someone's trying to gban a Demon Disaster! *grabs popcorn*")
         return
 
+    if int(user_id) in (777000, 1087968824):
+        message.reply_text("Huh, why would I gban Telegram bots?")
+        return
+
     if int(user_id) in WHITELIST_USERS:
         message.reply_text("Wolves cannot be gbanned!")
         return
@@ -318,7 +322,6 @@ def gbanlist(bot: Bot, update: Update):
 
 
 def check_and_ban(update, user_id, should_message=True):
-    
     if sql.is_user_gbanned(user_id):
         update.effective_chat.kick_member(user_id)
         if should_message:
@@ -368,13 +371,56 @@ def antispam(bot: Bot, update: Update, args: List[str]):
                                             "When True, any gbans that happen will also happen in your group. "
                                             "When False, they won't, leaving you at the possible mercy of "
                                             "spammers.".format(sql.does_chat_gban(update.effective_chat.id)))
+@run_async
+def clear_gbans(bot: Bot, update: Update):
+    '''Check and remove deleted accounts from gbanlist.
+    By @TheRealPhoenix'''
+    banned = sql.get_gban_list()
+    deleted = 0
+    for user in banned:
+        id = user["user_id"]
+        time.sleep(0.1) # Reduce floodwait
+        try:
+            acc = bot.get_chat(id)
+            if not acc.first_name:
+                deleted += 1
+                sql.ungban_user(id)
+        except BadRequest:
+            deleted += 1
+            sql.ungban_user(id)
+    update.message.reply_text("Done! `{}` deleted accounts were removed " \
+    "from the gbanlist.".format(deleted), parse_mode=ParseMode.MARKDOWN)
+    
 
+@run_async
+def check_gbans(bot: Bot, update: Update):
+    '''By @TheRealPhoenix'''
+    banned = sql.get_gban_list()
+    deleted = 0
+    for user in banned:
+        id = user["user_id"]
+        time.sleep(0.1) # Reduce floodwait
+        try:
+            acc = bot.get_chat(id)
+            if not acc.first_name:
+                deleted += 1
+        except BadRequest:
+            deleted += 1
+    if deleted:
+        update.message.reply_text("`{}` deleted accounts found in the gbanlist! " \
+        "Run /cleangb to remove them from the database!".format(deleted),
+        parse_mode=ParseMode.MARKDOWN)
+    else:
+        update.message.reply_text("No deleted accounts in the gbanlist!")
 
 def __stats__():
     return f"{sql.num_gbanned_users()} gbanned users."
 
 
 def __user_info__(user_id):
+    if user_id in (777000, 1087968824):
+        return ""
+
     is_gbanned = sql.is_user_gbanned(user_id)
 
     text = "Gbanned: <b>{}</b>"
@@ -419,15 +465,18 @@ Note: You can appeal gbans or ask gbans at @fateunion
 GBAN_HANDLER = CommandHandler("gban", gban, pass_args=True)
 UNGBAN_HANDLER = CommandHandler("ungban", ungban, pass_args=True)
 GBAN_LIST = CommandHandler("gbanlist", gbanlist)
-
 ANTISPAM = CommandHandler("antispam", antispam, pass_args=True, filters=Filters.group)
-
+GBAN_ENFORCER = MessageHandler(Filters.all & Filters.group, enforce_gban)
+CHECK_GBAN_HANDLER = CommandHandler("checkgb", check_gbans, filters=Filters.user(OWNER_ID))
+CLEAN_GBAN_HANDLER = CommandHandler("cleangb", clear_gbans, filters=Filters.user(OWNER_ID))
 GBAN_ENFORCER = MessageHandler(Filters.all & Filters.group, enforce_gban)
 
 dispatcher.add_handler(GBAN_HANDLER)
 dispatcher.add_handler(UNGBAN_HANDLER)
 dispatcher.add_handler(GBAN_LIST)
 dispatcher.add_handler(ANTISPAM)
+dispatcher.add_handler(CHECK_GBAN_HANDLER)
+dispatcher.add_handler(CLEAN_GBAN_HANDLER)
 
 __mod_name__ = "Anti Spam"
 __handlers__ = [GBAN_HANDLER, UNGBAN_HANDLER, GBAN_LIST, ANTISPAM]
