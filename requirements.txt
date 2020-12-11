@@ -5,6 +5,7 @@ bs4
 beautifulsoup4
 redis
 nekos.py
+cachetools
 requests
 mtranslate
 sqlalchemy
