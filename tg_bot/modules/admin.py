@@ -12,7 +12,7 @@ from telegram.utils.helpers import escape_markdown, mention_html
 
 from tg_bot import dispatcher, SUDO_USERS, TOKEN
 from tg_bot.modules.disable import DisableAbleCommandHandler
-from tg_bot.modules.helper_funcs.chat_status import bot_admin, can_promote, user_admin, can_pin
+from tg_bot.modules.helper_funcs.chat_status import bot_admin, can_promote, user_admin, can_pin, ADMIN_CACHE
 from tg_bot.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from tg_bot.modules.log_channel import loggable
 
@@ -215,6 +215,17 @@ def unpin(bot: Bot, update: Update) -> str:
 
 
 @run_async
+@user_admin
+def refresh_admin(bot: Bot, update: Update):
+    try:
+        ADMIN_CACHE.pop(update.effective_chat.id)
+    except KeyError:
+        pass
+
+    update.effective_message.reply_text("Admins cache refreshed!")
+
+
+@run_async
 @bot_admin
 @user_admin
 def invite(bot: Bot, update: Update):
@@ -261,6 +272,9 @@ __help__ = """
  - /promote: promotes the user you reply to.
  - /settitle <title>: as a reply to a user, sets admin title.
  - /demote: demotes the user you reply to.
+ - /admincache : force refresh the admins list
+ - /zombies : Scan deleted accounts
+ - /zombies clean : Cleans deleted account
 
 """
 
@@ -277,6 +291,9 @@ DEMOTE_HANDLER = CommandHandler("demote", demote, pass_args=True, filters=Filter
 
 ADMINLIST_HANDLER = DisableAbleCommandHandler("adminlist", adminlist, filters=Filters.group)
 
+ADMIN_REFRESH_HANDLER = CommandHandler(
+    "admincache", refresh_admin, filters=Filters.group)
+
 dispatcher.add_handler(PIN_HANDLER)
 dispatcher.add_handler(UNPIN_HANDLER)
 dispatcher.add_handler(INVITE_HANDLER)
@@ -284,3 +301,4 @@ dispatcher.add_handler(PROMOTE_HANDLER)
 dispatcher.add_handler(DEMOTE_HANDLER)
 dispatcher.add_handler(ADMINLIST_HANDLER)
 dispatcher.add_handler(SET_TITLE_HANDLER)
+dispatcher.add_handler(ADMIN_REFRESH_HANDLER)
