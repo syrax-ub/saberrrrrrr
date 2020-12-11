@@ -27,15 +27,16 @@ from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 
 PM_START_TEXT = """
-
 Hi {}, My name is {} ! 
 "I'm a part of the Fate Union and can easily manage your groups."
 𝓘 𝓪𝓶 𝒜𝓇𝓉𝑜𝓇𝒾𝒶 𝒫𝑒𝓃𝒹𝓇𝒶𝑔𝑜𝓃 𝓽𝓱𝓮 𝓼𝔀𝓸𝓻𝓭 𝓱𝓮𝓻𝓸  𝓸𝓷𝓮 𝓸𝓯 𝓽𝓱𝓮 𝓗𝓮𝓻𝓸 𝓸𝓯 𝓱𝓸𝓵𝔂 𝓰𝓻𝓪𝓲𝓵 𝔀𝓪𝓻 𝓘 𝓪𝓶 𝓼𝓾𝓶𝓶𝓸𝓷𝓮𝓭 𝓫𝔂 𝓶𝔂 𝓶𝓪𝓼𝓽𝓮𝓻 𝓽𝓸 𝓱𝓮𝓵𝓹 𝓱𝓲𝓶
 I HOPE I'LL BE ABLE TO MAINTAIN YOUR GROUP!
+Click on the help button below to get help supported module.
 
 """
 
-BOT_IMG = "https://telegra.ph/file/416715b80273f69800d85.jpg"
+
+BOT_IMG = "https://telegra.ph/file/98cb413468829dc59a74c.mp4"
 
 
 HELP_STRINGS = """
@@ -141,9 +142,9 @@ def start(bot: Bot, update: Update, args: List[str]):
 
         else:
             first_name = update.effective_user.first_name
-            update.effective_message.reply_photo(
+            update.effective_message.reply_animation(
                 BOT_IMG,
-                PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),
+                caption=PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
                     [[
@@ -283,71 +284,6 @@ def get_help(bot: Bot, update: Update):
     else:
         send_help(chat.id, HELP_STRINGS)
 
-def imdb_searchdata(bot: Bot, update: Update):
-    query_raw = update.callback_query
-    query = query_raw.data.split('$')
-    print(query)
-    if query[1] != query_raw.from_user.username:
-        return
-    title = ''
-    rating = ''
-    date = ''
-    synopsis = ''
-    url_sel = 'https://www.imdb.com/title/%s/' % (query[0])
-    text_sel = requests.get(url_sel).text
-    selector_global = Selector(text = text_sel)
-    title = selector_global.xpath('//div[@class="title_wrapper"]/h1/text()').get().strip()
-    try:
-        rating = selector_global.xpath('//div[@class="ratingValue"]/strong/span/text()').get().strip()
-    except:
-        rating = '-'
-    try:
-        date = '(' + selector_global.xpath('//div[@class="title_wrapper"]/h1/span/a/text()').getall()[-1].strip() + ')'
-    except:
-        date = selector_global.xpath('//div[@class="subtext"]/a/text()').getall()[-1].strip()
-    try:
-        synopsis_list = selector_global.xpath('//div[@class="summary_text"]/text()').getall()
-        synopsis = re.sub(' +',' ', re.sub(r'\([^)]*\)', '', ''.join(sentence.strip() for sentence in synopsis_list)))
-    except:
-        synopsis = '_No synopsis available._'
-    movie_data = '*%s*, _%s_\n★ *%s*\n\n%s' % (title, date, rating, synopsis)
-    query_raw.edit_message_text(
-        movie_data, 
-        parse_mode=ParseMode.MARKDOWN
-    )
-
-@run_async
-def imdb(bot: Bot, update: Update, args):
-    message = update.effective_message
-    query = ''.join([arg + '_' for arg in args]).lower()
-    if not query:
-        bot.send_message(
-            message.chat.id,
-            'You need to specify a movie/show name!'
-        )
-        return
-    url_suggs = 'https://v2.sg.media-imdb.com/suggests/%s/%s.json' % (query[0], query)
-    json_url = urlopen(url_suggs)
-    suggs_raw = ''
-    for line in json_url:
-        suggs_raw = line
-    skip_chars = 6 + len(query)
-    suggs_dict = json.loads(suggs_raw[skip_chars:][:-1])
-    if suggs_dict:
-        button_list = [[
-                InlineKeyboardButton(
-                    text = str(sugg['l'] + ' (' + str(sugg['y']) + ')'), 
-                    callback_data = str(sugg['id']) + '$' + str(message.from_user.username)
-                )] for sugg in suggs_dict['d'] if 'y' in sugg
-        ]
-        reply_markup = InlineKeyboardMarkup(button_list)
-        bot.send_message(
-            message.chat.id,
-            'Which one? ',
-            reply_markup = reply_markup
-        )
-    else:
-        pass
 
 
 def send_settings(chat_id, user_id, user=False):
@@ -483,6 +419,104 @@ def migrate_chats(bot: Bot, update: Update):
     LOGGER.info("Successfully migrated!")
     raise DispatcherHandlerStop
 
+@run_async
+def imdb_searchdata(bot: Bot, update: Update):
+    query_raw = update.callback_query
+    query = query_raw.data.split('$')
+    print(query)
+    if query[1] != query_raw.from_user.username:
+        return
+    title = ''
+    rating = ''
+    date = ''
+    synopsis = ''
+    url_sel = 'https://www.imdb.com/title/%s/' % (query[0])
+    text_sel = requests.get(url_sel).text
+    selector_global = Selector(text = text_sel)
+    title = selector_global.xpath('//div[@class="title_wrapper"]/h1/text()').get().strip()
+    try:
+        rating = selector_global.xpath('//div[@class="ratingValue"]/strong/span/text()').get().strip()
+    except:
+        rating = '-'
+    try:
+        date = '(' + selector_global.xpath('//div[@class="title_wrapper"]/h1/span/a/text()').getall()[-1].strip() + ')'
+    except:
+        date = selector_global.xpath('//div[@class="subtext"]/a/text()').getall()[-1].strip()
+    try:
+        synopsis_list = selector_global.xpath('//div[@class="summary_text"]/text()').getall()
+        synopsis = re.sub(' +',' ', re.sub(r'\([^)]*\)', '', ''.join(sentence.strip() for sentence in synopsis_list)))
+    except:
+        synopsis = '_No synopsis available._'
+    movie_data = '*%s*, _%s_\n★ *%s*\n\n%s' % (title, date, rating, synopsis)
+    query_raw.edit_message_text(
+        movie_data, 
+        parse_mode=ParseMode.MARKDOWN
+    )
+
+@run_async
+def imdb(bot: Bot, update: Update, args):
+    message = update.effective_message
+    query = ''.join([arg + '_' for arg in args]).lower()
+    if not query:
+        bot.send_message(
+            message.chat.id,
+            'You need to specify a movie/show name!'
+        )
+        return
+    url_suggs = 'https://v2.sg.media-imdb.com/suggests/%s/%s.json' % (query[0], query)
+    json_url = urlopen(url_suggs)
+    suggs_raw = ''
+    for line in json_url:
+        suggs_raw = line
+    skip_chars = 6 + len(query)
+    suggs_dict = json.loads(suggs_raw[skip_chars:][:-1])
+    if suggs_dict:
+        button_list = [[
+                InlineKeyboardButton(
+                    text = str(sugg['l'] + ' (' + str(sugg['y']) + ')'), 
+                    callback_data = str(sugg['id']) + '$' + str(message.from_user.username)
+                )] for sugg in suggs_dict['d'] if 'y' in sugg
+        ]
+        reply_markup = InlineKeyboardMarkup(button_list)
+        bot.send_message(
+            message.chat.id,
+            'Which one? ',
+            reply_markup = reply_markup
+        )
+    else:
+        pass             
+            
+# Avoid memory dead
+def memory_limit(percentage: float):
+    if platform.system() != "Linux":
+        print('Only works on linux!')
+        return
+    soft, hard = resource.getrlimit(resource.RLIMIT_AS)
+    resource.setrlimit(resource.RLIMIT_AS, (int(get_memory() * 1024 * percentage), hard))
+
+def get_memory():
+    with open('/proc/meminfo', 'r') as mem:
+        free_memory = 0
+        for i in mem:
+            sline = i.split()
+            if str(sline[0]) in ('MemFree:', 'Buffers:', 'Cached:'):
+                free_memory += int(sline[1])
+    return free_memory
+
+def memory(percentage=0.5):
+    def decorator(function):
+        def wrapper(*args, **kwargs):
+            memory_limit(percentage)
+            try:
+                function(*args, **kwargs)
+            except MemoryError:
+                mem = get_memory() / 1024 /1024
+                print('Remain: %.2f GB' % mem)
+                sys.stderr.write('\n\nERROR: Memory Exception\n')
+                sys.exit(1)
+        return wrapper
+    return decorator
+            
 
 def main():
     test_handler = CommandHandler("test", test)
@@ -490,12 +524,12 @@ def main():
 
     start_callback_handler = CallbackQueryHandler(send_start, pattern=r"bot_start")
     
+    IMDB_HANDLER = CommandHandler('imdb', imdb, pass_args=True)
+    IMDB_SEARCHDATAHANDLER = CallbackQueryHandler(imdb_searchdata)
 
     help_handler = CommandHandler("help", get_help)
     help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_")
     
-    IMDB_HANDLER = CommandHandler("imdb", imdb, pass_args=True)
-    IMDB_SEARCHDATA_HANDLER = CallbackQueryHandler(imdb_searchdata)
     settings_handler = CommandHandler("settings", get_settings)
     settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_")
 
@@ -511,8 +545,9 @@ def main():
     dispatcher.add_handler(migrate_handler)
     dispatcher.add_handler(start_callback_handler)
     dispatcher.add_handler(IMDB_HANDLER)
-    dispatcher.add_handler(IMDB_SEARCHDATA_HANDLER)
+    dispatcher.add_handler(IMDB_SEARCHDATAHANDLER)
     # dispatcher.add_error_handler(error_callback)
+    
 
     if WEBHOOK:
         LOGGER.info("Using webhooks.")
@@ -525,18 +560,17 @@ def main():
                                     certificate=open(CERT_PATH, 'rb'))
         else:
             updater.bot.set_webhook(url=URL + TOKEN)
-
+            
     else:
         LOGGER.info("saber is working ......")
         updater.start_polling(timeout=15, read_latency=4)
-
+        
     if len(argv) not in (1, 3, 4):
         oko.disconnect()
     else:
         oko.run_until_disconnected()
 
     updater.idle()
-
 
 if __name__ == '__main__':
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
