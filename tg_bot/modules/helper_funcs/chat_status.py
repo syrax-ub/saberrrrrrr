@@ -1,12 +1,17 @@
 from functools import wraps
+from time import perf_counter
+from cachetools import TTLCache
+from threading import RLock
+from telegram import Bot, Chat, ChatMember, Update, User, ParseMode
 
-from telegram import Bot, Chat, ChatMember, Update, ParseMode
+from tg_bot import dispatcher, DEL_CMDS, WHITELIST_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USERS
 
-from tg_bot import dispatcher, DEL_CMDS, WHITELIST_USERS, TIGER_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USERS
-
+# stores admemes in memory for 10 min.
+ADMIN_CACHE = TTLCache(maxsize=512, ttl=60 * 10, timer=perf_counter)
+THREAD_LOCK = RLock()
 
 def is_whitelist_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
-    return any(user_id in user for user in [WHITELIST_USERS, TIGER_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USERS])
+    return user_id in WHITELIST_USERS or user_id in SUPPORT_USERS or user_id in SUDO_USERS or user_id in DEV_USERS
 
 
 def is_support_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
@@ -18,19 +23,33 @@ def is_sudo_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
 
 
 def is_user_admin(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
-    if (chat.type == 'private'
-            or user_id in SUDO_USERS
-            or user_id in DEV_USERS
-            or chat.all_members_are_administrators):
+
+    if chat.type == 'private' \
+            or user_id in SUDO_USERS \
+            or user_id in DEV_USERS \
+            or user_id in [777000, 1087968824] \
+            or chat.all_members_are_administrators:
         return True
-
+        
     if not member:
-        member = chat.get_member(user_id)
+        with THREAD_LOCK:
+            # try to fetch from cache first.
+            try:
+                return user_id in ADMIN_CACHE[chat.id]
+            except KeyError:
+                # keyerror happend means cache is deleted,
+                # so query bot api again and return user status
+                # while saving it in cache for future useage...
+                chat_admins = dispatcher.bot.getChatAdministrators(chat.id)
+                admin_list = [x.user.id for x in chat_admins]
+                ADMIN_CACHE[chat.id] = admin_list
 
-    return member.status in ('administrator', 'creator')
-
+                if user_id in admin_list:
+                    return True
+                return False
 
 def is_bot_admin(chat: Chat, bot_id: int, bot_member: ChatMember = None) -> bool:
+
     if chat.type == 'private' or chat.all_members_are_administrators:
         return True
 
@@ -45,12 +64,13 @@ def can_delete(chat: Chat, bot_id: int) -> bool:
 
 
 def is_user_ban_protected(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
-    if (chat.type == 'private'
-            or user_id in SUDO_USERS
-            or user_id in DEV_USERS
-            or user_id in WHITELIST_USERS
-            or user_id in TIGER_USERS
-            or chat.all_members_are_administrators):
+
+    if chat.type == 'private' \
+            or user_id in SUDO_USERS \
+            or user_id in DEV_USERS \
+            or user_id in WHITELIST_USERS \
+            or user_id in [777000, 1087968824]\
+            or chat.all_members_are_administrators:
         return True
 
     if not member:
@@ -58,8 +78,8 @@ def is_user_ban_protected(chat: Chat, user_id: int, member: ChatMember = None) -
 
     return member.status in ('administrator', 'creator')
 
-
 def is_user_in_chat(chat: Chat, user_id: int) -> bool:
+
     member = chat.get_member(user_id)
     return member.status not in ('left', 'kicked')
 
@@ -77,15 +97,15 @@ def dev_plus(func):
         elif DEL_CMDS and " " not in update.effective_message.text:
             update.effective_message.delete()
         else:
-            update.effective_message.reply_text("This is a developer restricted command."
-                                                " You do not have permissions to run this.")
+            update.effective_message.reply_text("This is a developer restricted command. You do not have permissions to run this.")
 
     return is_dev_plus_func
-
+    
 
 def sudo_plus(func):
     @wraps(func)
     def is_sudo_plus_func(bot: Bot, update: Update, *args, **kwargs):
+        
         user = update.effective_user
         chat = update.effective_chat
 
@@ -104,6 +124,7 @@ def sudo_plus(func):
 def support_plus(func):
     @wraps(func)
     def is_support_plus_func(bot: Bot, update: Update, *args, **kwargs):
+        
         user = update.effective_user
         chat = update.effective_chat
 
@@ -118,13 +139,14 @@ def support_plus(func):
 def whitelist_plus(func):
     @wraps(func)
     def is_whitelist_plus_func(bot: Bot, update: Update, *args, **kwargs):
+        
         user = update.effective_user
         chat = update.effective_chat
 
         if user and is_whitelist_plus(chat, user.id):
             return func(bot, update, *args, **kwargs)
         else:
-            update.effective_message.reply_text("You don't have access to use this.\nVisit @fateunion")
+            update.effective_message.reply_text("You don't have access to use this.\nVisit @OnePunchSupport")
 
     return is_whitelist_plus_func
 
@@ -132,9 +154,10 @@ def whitelist_plus(func):
 def user_admin(func):
     @wraps(func)
     def is_admin(bot: Bot, update: Update, *args, **kwargs):
+
         user = update.effective_user
         chat = update.effective_chat
-
+        
         if user and is_user_admin(chat, user.id):
             return func(bot, update, *args, **kwargs)
         elif not user:
@@ -150,6 +173,7 @@ def user_admin(func):
 def user_admin_no_reply(func):
     @wraps(func)
     def is_not_admin_no_reply(bot: Bot, update: Update, *args, **kwargs):
+
         user = update.effective_user
         chat = update.effective_chat
 
@@ -166,6 +190,7 @@ def user_admin_no_reply(func):
 def user_not_admin(func):
     @wraps(func)
     def is_not_admin(bot: Bot, update: Update, *args, **kwargs):
+
         user = update.effective_user
         chat = update.effective_chat
 
@@ -180,6 +205,7 @@ def user_not_admin(func):
 def bot_admin(func):
     @wraps(func)
     def is_admin(bot: Bot, update: Update, *args, **kwargs):
+
         chat = update.effective_chat
         update_chat_title = chat.title
         message_chat_title = update.effective_message.chat.title
@@ -200,6 +226,7 @@ def bot_admin(func):
 def bot_can_delete(func):
     @wraps(func)
     def delete_rights(bot: Bot, update: Update, *args, **kwargs):
+
         chat = update.effective_chat
         update_chat_title = chat.title
         message_chat_title = update.effective_message.chat.title
@@ -220,6 +247,7 @@ def bot_can_delete(func):
 def can_pin(func):
     @wraps(func)
     def pin_rights(bot: Bot, update: Update, *args, **kwargs):
+
         chat = update.effective_chat
         update_chat_title = chat.title
         message_chat_title = update.effective_message.chat.title
@@ -240,6 +268,7 @@ def can_pin(func):
 def can_promote(func):
     @wraps(func)
     def promote_rights(bot: Bot, update: Update, *args, **kwargs):
+
         chat = update.effective_chat
         update_chat_title = chat.title
         message_chat_title = update.effective_message.chat.title
@@ -247,9 +276,8 @@ def can_promote(func):
         if update_chat_title == message_chat_title:
             cant_promote = f"I can't promote/demote people here!\nMake sure I'm admin and can appoint new admins."
         else:
-            cant_promote = (f"I can't promote/demote people in <b>{update_chat_title}</b>!\n"
-                            f"Make sure I'm admin there and can appoint new admins.")
-
+            cant_promote = f"I can't promote/demote people in <b>{update_chat_title}</b>!\nMake sure I'm admin there and can appoint new admins."
+        
         if chat.get_member(bot.id).can_promote_members:
             return func(bot, update, *args, **kwargs)
         else:
@@ -261,6 +289,7 @@ def can_promote(func):
 def can_restrict(func):
     @wraps(func)
     def restrict_rights(bot: Bot, update: Update, *args, **kwargs):
+
         chat = update.effective_chat
         update_chat_title = chat.title
         message_chat_title = update.effective_message.chat.title
@@ -281,6 +310,7 @@ def can_restrict(func):
 def connection_status(func):
     @wraps(func)
     def connected_status(bot: Bot, update: Update, *args, **kwargs):
+
         conn = connected(bot, update, update.effective_chat, update.effective_user.id, need_admin=False)
 
         if conn:
@@ -297,7 +327,6 @@ def connection_status(func):
     return connected_status
 
 
-# Workaround for circular import with connection.py
+#Workaround for circular import with connection.py
 from tg_bot.modules import connection
-
 connected = connection.connected
