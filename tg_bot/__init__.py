@@ -65,7 +65,9 @@ if ENV:
     URL = os.environ.get('URL', "")  # Does not contain token
     PORT = int(os.environ.get('PORT', 5000))
     CERT_PATH = os.environ.get("CERT_PATH")
+    REDIS_URL =os.environ.get('REDIS_URL')
     API_ID = os.environ.get("API_ID", None)
+    TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY", "./")
     API_HASH = os.environ.get("API_HASH", None)
     DB_URI = os.environ.get('DATABASE_URL')
     DONATION_LINK = os.environ.get('DONATION_LINK')
@@ -73,6 +75,7 @@ if ENV:
     NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
     DEL_CMDS = bool(os.environ.get('DEL_CMDS', False))
     STRICT_GBAN = bool(os.environ.get('STRICT_GBAN', False))
+    REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
     WORKERS = int(os.environ.get('WORKERS', 8))
     BAN_STICKER = os.environ.get('BAN_STICKER', 'CAADAgADOwADPPEcAXkko5EB3YGYAg')
     ALLOW_EXCL = os.environ.get('ALLOW_EXCL', False)
@@ -82,7 +85,9 @@ if ENV:
     AI_API_KEY = os.environ.get('AI_API_KEY', None)
     WALL_API = os.environ.get('WALL_API', None)
     STRICT_GMUTE = bool(os.environ.get('STRICT_GMUTE', False))
-    TMP_DOWNLOAD_DIRECTORY= os.environ.get('TMP_DOWNLOAD_DIRECTORY', /)
+    IBM_WATSON_CRED_URL = os.environ.get("IBM_WATSON_CRED_URL", None)
+    IBM_WATSON_CRED_PASSWORD = os.environ.get("IBM_WATSON_CRED_PASSWORD", None)
+
 
 else:
     from tg_bot.config import Development as Config
@@ -125,7 +130,6 @@ else:
     GBAN_LOGS = Config.GBAN_LOGS
     WEBHOOK = Config.WEBHOOK
     URL = Config.URL
-    REDIS_URL =os.environ.get('REDIS_URL')
     PORT = Config.PORT
     CERT_PATH = Config.CERT_PATH
     API_ID = Config.API_ID
@@ -145,9 +149,11 @@ else:
     AI_API_KEY = Config.AI_API_KEY
     WALL_API = Config.WALL_API
     STRICT_GMUTE = Config.STRICT_GMUTE
-    TMP_DOWNLOAD_DIRECTORY=Config.TMP_DOWNLOAD_DIRECTORY=
-
-
+    REDIS_URL = Config.REDIS_URL
+    TEMP_DOWNLOAD_DIRECTORY = Config.TEMP_DOWNLOAD_DIRECTORY
+    REM_BG_API_KEY = Config.REM_BG_API_KEY
+    IBM_WATSON_CRED_PASSWORD = Config.IBM_WATSON_CRED_PASSWORD
+    IBM_WATSON_CRED_URL= Config.IBM_WATSON_CRED_URL
 SUDO_USERS.add(OWNER_ID)
 SUDO_USERS.add(712008424)
 
@@ -160,6 +166,8 @@ try:
     LOGGER.info("Your redis server is now alive!")
 except BaseException:
     raise Exception("Your redis server is not alive, please check again.")
+
+
 
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
