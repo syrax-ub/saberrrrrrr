@@ -36,7 +36,7 @@ Click on the help button below to get help supported module.
 """
 
 
-BOT_IMG = "https://telegra.ph/file/98cb413468829dc59a74c.mp4"
+BOT_IMG = "https://telegra.ph/file/8383700dd81b2774e36a1.gif"
 
 
 HELP_STRINGS = """
